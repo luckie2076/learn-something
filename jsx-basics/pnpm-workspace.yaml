@@ -1,0 +1,9 @@
+packages:
+  - '01-*'
+  - '02-*'
+  - '03-*'
+  - '04-*'
+
+allowBuilds:
+  rolldown: true
+  lightningcss: true
