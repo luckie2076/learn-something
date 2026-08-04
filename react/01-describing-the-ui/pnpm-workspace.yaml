@@ -1,0 +1,3 @@
+allowBuilds:
+  rolldown: true
+  lightningcss: true
