@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>04 · 控制流</title>
+</head>
+<body>
+  <h1>控制流：条件与循环</h1>
+
+  <script>
+    // 条件：根据情况走不同分支。
+    let score = 85;
+    if (score >= 60) {
+      console.log("及格");
+    } else {
+      console.log("不及格");
+    }
+
+    // 三元：简单的 条件 ? 真 : 假，适合一行赋值。
+    let tip = score >= 60 ? "过" : "挂";
+    console.log(tip);
+
+    // 循环：把"重复做的事"写成一条规则。
+    // 为什么需要循环？手动写 100 次 console.log 不现实，
+    // 循环让"数量"和"动作"解耦——改次数不用改动作。
+    for (let i = 0; i < 3; i++) {
+      console.log("第" + i + "次");
+    }
+
+    // while：条件为真就一直做（注意别写成死循环）。
+    let n = 0;
+    while (n < 3) {
+      console.log(n);
+      n++;
+    }
+
+    // 遍历数组用 for...of（更语义化，不用管下标）：
+    let fruits = ["苹果", "香蕉"];
+    for (let f of fruits) {
+      console.log(f);
+    }
+  </script>
+</body>
+</html>

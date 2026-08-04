@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8" /><title>02 · 链接与图片</title></head>
+<body>
+  <!-- 链接：href 是目标地址；target="_blank" 新标签页打开；rel="noopener" 防安全/性能问题 -->
+  <a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML" target="_blank" rel="noopener">MDN HTML 文档</a>
+
+  <!-- 锚点：href="#id" 跳到本页带 id 的元素 -->
+  <a href="#sec">跳到下方章节</a>
+
+  <!-- 图片：alt 在图片加载失败或读屏时显示，是“可访问性”的必需项 -->
+  <img src="https://via.placeholder.com/200" alt="示例图片" width="200" />
+
+  <section id="sec">
+    <h2>被锚点定位的章节</h2>
+    <p>点上面的“跳到下方章节”会滚到这里。</p>
+  </section>
+</body>
+</html>

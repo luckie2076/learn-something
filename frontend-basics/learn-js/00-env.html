@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>00 · 环境与运行</title>
+</head>
+<body>
+  <h1>JS 在哪里运行</h1>
+
+  <!--
+    JS 默认"寄生"在 HTML 里：浏览器从上往下解析 HTML，
+    遇到 <script> 就停下执行里面的 JS，再继续往下解析。
+    这就是为什么脚本放错位置可能"拿不到下面的元素"。
+  -->
+  <script>
+    // console.log 是你的"调试眼睛"：把值打印到控制台（按 F12 打开）。
+    // 为什么不用 alert？alert 会阻塞页面、打断流程，只适合临时弹一下。
+    console.log("Hello, JS"); // 打开控制台(F12 → Console) 才能看到这行
+  </script>
+
+  <!--
+    方式 1 · 内联脚本（写在标签里）
+      <script>console.log(1)</script>
+    缺点：逻辑锁死在这一页，无法复用、无法被浏览器缓存。
+
+    方式 2 · 外部脚本（推荐，正式项目用这个）
+      <script src="app.js"></script>
+    为什么最好？复用 + 缓存 + 关注点分离（HTML 管结构、JS 管行为），
+    和 CSS 用外部样式表的理由一模一样。
+
+    位置讲究：把 <script> 放在 <body> 末尾，或加 defer，
+    确保 HTML 先解析完——否则脚本去选"还不存在"的元素会拿到 null。
+  -->
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>06 · 作用域与闭包</title>
+</head>
+<body>
+  <h1>作用域与闭包</h1>
+
+  <script>
+    // 作用域：变量"可见"的范围。JS 用"词法作用域"——看代码写在哪里，不是在哪里调用。
+    let outer = "外层";
+    function inside() {
+      let inner = "内层";
+      console.log(outer); // 能读到外层
+    }
+    inside();
+    // console.log(inner); // 报错：内层变量在外层看不见
+
+    // 为什么作用域有用？隔离，避免名字互相覆盖，像给变量划了"房间"。
+
+    // 闭包：函数"记住"了它定义时所在的作用域，即使那个作用域已执行完。
+    function makeCounter() {
+      let count = 0;           // 这个变量被"包"在内部
+      return function() {
+        count++;               // 内部函数仍能访问 count
+        return count;
+      };
+    }
+    const counter = makeCounter();
+    console.log(counter()); // 1
+    console.log(counter()); // 2
+
+    // 为什么闭包有用？实现"私有数据"：count 外部无法直接改，
+    // 只能通过返回的函数访问。这正是模块、私有变量的基础（呼应 11 模块）。
+  </script>
+</body>
+</html>

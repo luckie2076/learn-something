@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>08 · page2（文档相对目标）</title>
+</head>
+<body>
+  <!--
+    本页没有 <base>，所以它的相对链接是相对“本文件自身位置”拼接的。
+    这正是 08-url.html 第 2 节想对照演示的效果：把那里的 <base> 注释掉后，
+    点“同目录文件”就会落到这个真实存在的兄弟文件上。
+  -->
+  <h1>这是 page2</h1>
+  <p>你通过「文档相对 URL」从 <code>08-url.html</code> 跳到了这里。</p>
+  <p><a href="08-url.html">返回 08-url.html（文档相对）</a></p>
+
+  <h2 id="top">锚点目标</h2>
+  <p><a href="08-url.html#top">跳回 08-url.html 的 #top（跨页片段）</a></p>
+</body>
+</html>

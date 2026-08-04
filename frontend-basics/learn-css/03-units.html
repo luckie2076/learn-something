@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>03 · 单位与尺寸</title>
+  <style>
+    html { font-size: 16px; }  /* 根字号：所有 rem 都相对它 */
+
+    .px  { font-size: 18px; }  /* 绝对像素：固定，无视用户缩放偏好 */
+    .em  { font-size: 1.5em; } /* 相对「父级」字号 */
+    .rem { font-size: 1.5rem; }/* 相对「根 <html>」字号：全局统一缩放 */
+
+    /* em 的陷阱：嵌套会层层相乘 */
+    .em-parent { font-size: 1.5em; }            /* 24px */
+    .em-parent .em-child { font-size: 1.5em; }  /* 24 × 1.5 = 36px，易失控 */
+
+    .vw { width: 50vw; background: #e3f2fd; }   /* 视口宽度的 50% */
+    .pct { width: 50%; background: #ffe0b2; }    /* 相对「父容器」宽度的 50% */
+
+    h1::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: red;
+  border-radius: 50%;
+  margin-right: 6px;
+}
+
+    /* 为什么全局字号别写死 px？
+       用户可能在浏览器里调「默认字号」或缩放页面，
+       px 无视这些偏好；用 rem 则随根字号一起缩放，更无障碍。 */
+  </style>
+</head>
+<body>
+  <h1>单位与尺寸：什么时候用什么</h1>
+
+  <p class="px">px：固定 18px</p>
+  <p class="em">em：1.5 × 父字号</p>
+  <p class="rem">rem：1.5 × 根字号(16px)=24px，最稳</p>
+
+  <div class="em-parent">em 父(24px)
+    <span class="em-child">em 子(实际 36px，被父放大了)</span>
+  </div>
+<!-- 
+  <div style="border:1px solid #ccc">
+    <div class="vw">width:50vw（相对视口）</div>
+    <div class="pct">width:50%（相对这个父容器）</div>
+  </div> -->
+
+  <div style="background-color: aquamarine; height: 64px; padding: 0px; border: 0px solid darkcyan">
+    <div style="height: 16px; width: 16px; background-color: red; margin-top: 32px;">
+      </div>
+    </div>
+    <em
+
+
+  </div>
+<!-- 
+  <div style="background-color: blue;height: 32px; margin-top: 4px;border:0px solid red; outline:8px solid red;">
+
+  </div> -->
+
+  <p>口诀：字号用 <code>rem</code>，间距可用 <code>rem/em</code>，宽高布局用 <code>%</code>/<code>fr</code>/<code>vw</code>。慎用裸 <code>px</code> 定全局字号。</p>
+</body>
+</html>

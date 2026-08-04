@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<!--
+  <!DOCTYPE html> 必须放在第一行。
+  作用：告诉浏览器用「标准模式(standards mode)」解析，而不是旧的「怪异模式(quirks mode)」。
+  怪异模式下盒模型、默认样式都不同，会导致布局诡异。这一行是“正确性”的开关。
+-->
+<html lang="zh-CN">
+<!-- lang 告诉浏览器/搜索引擎/读屏软件：页面主要语言是中文 -->
+<head>
+  <!-- head 里的信息不显示在页面上，是“给机器看的元数据” -->
+  <meta charset="UTF-8" />
+  <!-- charset 必须在 <title> 之前，确保标题等中文正确解码 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- viewport 让页面按设备宽度渲染，是“移动端适配”的必需项 -->
+  <title>00 · 文档结构</title>
+</head>
+<body>
+  <h1>HTML 文档骨架</h1>
+  <p>所有 HTML 页面都是这个结构：一个根 <code>&lt;html&gt;</code>，里面分 <code>&lt;head&gt;</code>（元数据）和 <code>&lt;body&gt;</code>（可见内容）。</p>
+</body>
+</html>

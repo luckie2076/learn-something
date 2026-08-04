@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>14 · 过渡与动画</title>
+  <style>
+    /* 过渡：属性变化时的「平滑过程」，三要素——
+       过渡属性、时长、缓动函数 */
+    .move {
+      width: 100px; height: 60px; background: #4caf50;
+      transition: transform .3s ease;
+    }
+    .move:hover { transform: translateX(40px); }
+    /* transform 走 GPU「合成层」，不触发重排/重绘，流畅且省电 */
+
+    .bad {
+      width: 100px; height: 60px; background: #f44336; position: relative;
+      transition: left .3s ease;
+    }
+    .bad:hover { left: 40px; }
+    /* 改 left 会触发「重排(layout)」，元素多时明显卡顿——尽量避免 */
+
+    /* 关键帧动画：自定义从→到的多步过程 */
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .spin { width: 60px; height: 60px; background: #2196f3;
+            animation: spin 1s linear infinite; }
+
+    /* 为什么动画优先 transform / opacity？
+       这两个属性只走合成层，不引起 layout/paint；
+       而 left/top/width 等会触发重排重绘，性能差。 */
+  </style>
+</head>
+<body>
+  <h1>过渡与动画</h1>
+
+  <div class="move">悬停我（transform 平滑右移）</div>
+  <div class="bad" style="margin-top:10px">悬停我（left 触发重排，较差）</div>
+  <div class="spin" style="margin-top:10px"></div>
+
+  <p>口诀：能做「位移/缩放/旋转/淡入淡出」就别动「宽高/位置」。</p>
+</body>
+</html>

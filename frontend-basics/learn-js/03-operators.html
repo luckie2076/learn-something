@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>03 · 运算与比较</title>
+</head>
+<body>
+  <h1>运算与比较</h1>
+
+  <script>
+    // ===（严格相等） vs ==（宽松相等）
+    // == 会先把两边类型"隐式转换"再比，结果反直觉：
+    console.log(0 == "");     // true（都转成 0）
+    console.log(0 == "0");    // true
+    console.log(false == ""); // true
+    // === 不转换，类型不同直接 false，更安全、更可预测。
+    console.log(0 === "");    // false
+    // 约定：永远用 ===，除非你明确想利用转换（极少）。
+
+    // 逻辑运算的"短路"：左边已能决定结果，右边就不执行。
+    // &&：左边为真才看右边； ||：左边为假才看右边。
+    let user = null;
+    console.log(user || "默认名"); // "默认名"（user 为假，取右边作兜底）
+    // 为什么有用？给"默认值"，比写 if 更简洁。
+
+    // 短路还能避免报错（防 null/undefined 的属性访问）：
+    let obj = null;
+    console.log(obj && obj.name); // null（不会因读 obj.name 而抛错）
+  </script>
+</body>
+</html>

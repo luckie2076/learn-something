@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>14 · class 与对象</title>
+</head>
+<body>
+  <h1>class（面向对象语法糖）</h1>
+
+  <script>
+    // 为什么有 class？当多处需要"同一种结构的对象"，重复写字面量很累。
+    // class 是"模板"，new 它就能批量造出结构一致的对象。
+    // 注意：JS 的 class 是"原型继承"的语法糖，本质还是基于原型。
+    class Person {
+      constructor(name) {
+        this.name = name; // this 指"正在创建的那一个实例"
+      }
+      say() {
+        console.log("我是" + this.name);
+      }
+    }
+    const p = new Person("小明");
+    p.say(); // 我是小明
+
+    // 继承：子类复用并扩展父类（extends）。
+    class Student extends Person {
+      study() { console.log(this.name + "在学习"); }
+    }
+    const s = new Student("小红");
+    s.study();
+  </script>
+</body>
+</html>

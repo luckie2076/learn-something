@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>13 · 响应式设计</title>
+  <style>
+    /* 移动优先（mobile-first）：先写小屏基础样式，再用 min-width 向上增强。
+       这样小屏拿到的是最少、最快的样式；大屏在其上叠加。 */
+    .card {
+      width: 100%;
+      padding: 16px;
+      background: #e3f2fd;
+      margin-bottom: 10px;
+    }
+
+    /* 媒体查询：当视口「至少」40em 宽时，改为两列并排 */
+    @media (min-width: 40em) {
+      .card { width: calc(50% - 5px); display: inline-block; }
+    }
+    @media (min-width: 64em) {
+      .card { width: calc(33.333% - 7px); }
+    }
+
+    /* 为什么断点用 em 而不是 px？
+       em 随用户默认字号缩放；若用户放大文字，布局会在「合适」的时机切换，
+       而 px 断点不理会用户偏好，可能在大字号下仍显示过挤的多列。 */
+  </style>
+</head>
+<body>
+  <h1>响应式设计：移动优先</h1>
+
+  <div class="card">卡片 A（窄屏整行；≥40em 两列；≥64em 三列）</div>
+  <div class="card">卡片 B</div>
+  <div class="card">卡片 C</div>
+
+  <p>配合 HTML 的 <code>&lt;meta viewport&gt;</code>（让页面按设备宽度渲染），
+     媒体查询才能正确生效。试着拖动浏览器窗口宽度看布局变化。</p>
+</body>
+</html>

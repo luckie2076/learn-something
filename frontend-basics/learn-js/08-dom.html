@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>08 · DOM 操作</title>
+</head>
+<body>
+  <h1 id="title">原标题</h1>
+  <button id="btn">点我改标题</button>
+
+  <!--
+    DOM = 浏览器把 HTML 解析成的"树状对象"。JS 通过这棵树来读/改页面。
+    这是 JS 成为"网页胶水层"的关键：HTML 给结构、CSS 给样式、JS 给行为。
+  -->
+  <script>
+    // 1) 选元素：querySelector 用 CSS 选择器语法（和 learn-css 一模一样）。
+    const title = document.querySelector("#title");
+    const btn = document.querySelector("#btn");
+
+    // 2) 改内容 / 样式
+    title.textContent = "被 JS 改了"; // 只改文字（安全，不会被当成标签）
+    // title.innerHTML = "<b>x</b>"; // 能写标签，但有 XSS 风险，优先用 textContent
+
+    // 3) 改样式（等价于 CSS，但只作用于这一个元素）
+    title.style.color = "crimson";
+
+    // 4) 为什么放这里能拿到元素？脚本在元素之后，DOM 已存在。
+    //    若把 <script> 放 <head>，需加 defer 或等 DOMContentLoaded 事件。
+    btn.addEventListener("click", function() {
+      title.textContent = "按钮点过了";
+    });
+
+    console.log("选中标题：", title.textContent);
+  </script>
+</body>
+</html>

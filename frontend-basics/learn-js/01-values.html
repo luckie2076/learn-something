@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>01 · 值与类型</title>
+</head>
+<body>
+  <h1>值与类型</h1>
+
+  <script>
+    // JS 是"动态弱类型"：变量不绑定类型，同一个变量可以装不同类型。
+    // 灵活，但也容易出"隐式转换"这种反直觉的结果。
+
+    // 原始类型（primitive）主要有这些：
+    let n = 1;             // number：数字，不分整数/浮点
+    let s = "hi";          // string：字符串
+    let b = true;          // boolean：真/假
+    let u = undefined;     // 声明了但还没赋值
+    let empty = null;      // 故意表示"空值"（历史设计，typeof 却是 object）
+    let sym = Symbol("k"); // symbol：唯一标识（了解即可）
+
+    // 为什么 1 + "1" === "11" 而不是 2？
+    // 因为 + 遇到字符串会做"拼接"，数字被隐式转成字符串。
+    console.log(1 + "1");  // "11"
+    console.log(1 + 1);    // 2
+
+    // 减号/乘号不会拼接，会反向把字符串转成数字：
+    console.log("3" - 1);  // 2
+    console.log("3" * "2"); // 6
+    // 所以别依赖隐式转换；需要时显式用 Number() / String()。
+
+    // typeof 的两个著名坑：
+    console.log(typeof null);            // "object" —— 历史遗留 bug，改不了了
+    console.log(typeof function(){});    // "function" —— 函数其实也是对象的一种
+  </script>
+</body>
+</html>

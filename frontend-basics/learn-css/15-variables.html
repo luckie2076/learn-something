@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>15 · CSS 变量与设计令牌</title>
+  <style>
+    /* CSS 自定义属性（变量）：以 -- 开头声明，用 var() 取用。
+       通常放 :root（根），全文档可继承。 */
+    :root {
+      --primary: #4caf50;
+      --space: 16px;
+      --radius: 8px;
+    }
+
+    .btn {
+      background: var(--primary);
+      padding: var(--space);
+      border-radius: var(--radius);
+      color: #fff; border: none; cursor: pointer;
+    }
+
+    /* 变量可被覆盖、被 JS 改、遵循层叠与特异性——
+       这是「设计令牌(design tokens)」与主题切换的基础。 */
+    .dark { --primary: #81c784; }  /* 局部重定义，仅作用于 .dark 内 */
+
+    /* 与预处理器变量（$var / @var）的本质区别：
+       预处理器在「编译期」做文本替换，编译完就消失，
+       无法在运行时被 JS 修改，也不响应层叠。
+       CSS 变量是「运行期」真实存在的属性，活在第一线。 */
+  </style>
+</head>
+<body>
+  <h1>CSS 变量与设计令牌</h1>
+
+  <button class="btn">默认主题按钮</button>
+
+  <div class="dark" style="margin-top:10px">
+    <button class="btn">暗色块内按钮（--primary 被局部覆盖）</button>
+  </div>
+
+  <p>统一在 <code>:root</code> 管理颜色/间距/圆角，改一处全站生效；
+     配合媒体查询或 JS 即可实现主题切换。</p>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8" /><title>07 · 多媒体</title></head>
+<body>
+  <audio controls src="audio.mp3"></audio>
+  <!-- controls 显示播放控件；没有 controls 则不可见也不可播放 -->
+
+  <video controls width="320" src="video.mp4"></video>
+
+  <!-- picture 让浏览器按条件选图，常用于响应式/格式兼容 -->
+  <picture>
+    <source srcset="img.webp" type="image/webp" />
+    <img src="img.jpg" alt="示例" />
+  </picture>
+
+  <!-- iframe 嵌入别的页面（如地图、视频），注意第三方内容的安全 -->
+  <iframe src="https://example.com" width="300" height="200" title="示例嵌入"></iframe>
+</body>
+</html>

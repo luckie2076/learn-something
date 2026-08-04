@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>06 · Flexbox 一维布局</title>
+  <style>
+    .flex {
+      display: flex;                /* 把容器变成弹性盒：子项沿「主轴」排列 */
+      gap: 10px;
+      height: 100px;
+      border: 1px solid #999;
+      justify-content: space-between; /* 主轴（默认水平）方向如何分布空隙 */
+      align-items: center;            /* 交叉轴（垂直）方向居中对齐 */
+    }
+    .flex > div { background: #d1c4e9; padding: 10px; }
+
+    .grow { flex: 1; }  /* flex-grow:1 → 有空位时放大占满；多个 1 则等分 */
+    .grow2 { flex: 2; } /* 占 2 份，比 flex:1 更宽 */
+
+    /* 为什么 Flex 出现？
+       早年要靠 float 做横向布局，却要额外「清浮动」，
+       且垂直居中几乎不可能。Flex 一行 display:flex 就解决
+       对齐、分布、自适应，是现代一维布局首选。 */
+  </style>
+</head>
+<body>
+  <h1>Flexbox：一维布局</h1>
+
+  <div class="flex">
+    <div>左</div>
+    <div class="grow">flex:1（占满剩余）</div>
+    <div class="grow2">flex:2（占两倍）</div>
+    <div>右</div>
+  </div>
+
+  <p>主轴 = <code>flex-direction</code> 方向（默认水平）；交叉轴 = 垂直。
+     <code>justify-content</code> 管主轴分布，<code>align-items</code> 管交叉轴对齐。
+     一维（一行或一列）用 Flex；二维（行列同时）见 07 Grid。</p>
+</body>
+</html>

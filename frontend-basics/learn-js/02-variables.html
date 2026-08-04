@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>02 · 变量声明</title>
+</head>
+<body>
+  <h1>变量声明：var / let / const</h1>
+
+  <script>
+    // var：函数作用域、可重复声明、会"变量提升"到顶部。
+    // 问题：在块 {} 里声明的 var 会漏到外面，容易污染。
+    var a = 1;
+    var a = 2; // 不报错（危险）
+
+    // let：块级作用域（{} 内才可见）、不可重复声明、有"暂时性死区"。
+    let b = 1;
+    // let b = 2; // 报错：不可重复声明
+
+    // const：与 let 同样块级作用域，但"绑定不可重新赋值"。
+    const c = 1;
+    // c = 2; // 报错：const 不能重新赋值
+
+    // 为什么默认用 const？
+    // 因为大多数变量一旦赋值就不该再变。const 让"这个不会变"成为契约，
+    // 代码更可预测，别人（和未来的你）读起来更放心。
+    // 只有确实要改的（计数器、累加）才用 let。var 基本不用了。
+
+    // 注意：const 只保证"地址不变"，对象/数组内部仍可改：
+    const arr = [1];
+    arr.push(2); // 合法，改的是内容不是地址
+    console.log(arr); // [1, 2]
+  </script>
+</body>
+</html>

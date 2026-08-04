@@ -1,0 +1,15 @@
+/* 外部样式表：被 00-03-external.html 通过 <link> 引入。
+   注意：这里没有 <style> 标签，直接写纯 CSS 规则即可。 */
+
+.card {
+  color: #fff;
+  background: #4caf50;
+  padding: 12px;
+  border-radius: 8px;
+  display: inline-block;
+}
+
+.muted {
+  color: #666;
+  font-size: 14px;
+}

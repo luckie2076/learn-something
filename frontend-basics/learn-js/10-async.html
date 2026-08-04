@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>10 · 异步与 Promise</title>
+</head>
+<body>
+  <h1>异步</h1>
+
+  <script>
+    // 为什么需要异步？JS 是单线程——同一时刻只做一件事。
+    // 如果去等一个慢操作（网络请求、定时器），线程会被卡住，页面假死。
+    // 解决：把"慢的事"先丢到一边，继续做别的，好了再"回头"处理。
+
+    // 回调写法（早期）：把函数当参数，完成后再调用它。
+    setTimeout(function() {
+      console.log("1 秒后才执行");
+    }, 1000);
+    console.log("我先执行"); // 这行先打印，证明非阻塞
+
+    // 回调嵌套多了变成"回调地狱"（缩进地狱、难维护）。
+    // Promise 出现：用 .then 把"之后做什么"串成链。
+    const p = new Promise(function(resolve) {
+      setTimeout(() => resolve("搞定"), 500);
+    });
+    p.then(function(result) {
+      console.log(result); // "搞定"
+    });
+
+    // async / await：让异步代码"看起来像同步"，可读性最好（推荐）。
+    async function main() {
+      const r = await p;   // 等 p 完成，期间不阻塞页面
+      console.log("await 拿到：", r);
+    }
+    main();
+
+    // 一句话：单线程靠"事件循环"排队处理异步；
+    // Promise / await 只是把这种排队写得更好读、更好维护。
+  </script>
+</body>
+</html>

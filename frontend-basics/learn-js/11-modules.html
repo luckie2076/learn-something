@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>11 · 导入 JS 的方式对比</title>
+</head>
+<body>
+  <h1>导入 JS 的几种方式</h1>
+  <button id="lazy">点我动态加载模块</button>
+
+  <!--
+    JS 不是只有一种"引入"方式。不同方式在「作用域、加载时机、能否用 import」上差别很大。
+    本节把三种方式放一起对比，重点看它们各自"解决了什么、又带来什么限制"。
+
+    运行说明：经典脚本（方式一）在 file:// 下也能跑；
+              模块脚本（方式二、三）涉及跨文件请求，file:// 会被浏览器拦截，
+              请用本地服务器打开：
+                python3 -m http.server 8000
+              再访问 http://localhost:8000/learn-js/11-modules.html
+  -->
+
+  <!-- ============ 方式一：经典脚本 <script src>（全局、按顺序） ============ -->
+  <!--
+    直接引入一个"普通脚本"。里面定义的函数/变量会挂到全局 window 上，
+    谁都能调用、也谁都能覆盖——这就是"全局污染"的来源。
+    适合：老项目，或无需模块化的简单页面。
+  -->
+  <script src="11-classic.js"></script>
+  <script>
+    // 11-classic.js 里的 greet 是全局的，这里直接能调用：
+    console.log("[经典脚本] greet =", greet("小明"));      // 你好，小明
+    console.log("[经典脚本] 挂在全局了吗？", "greet" in window); // true（污染全局）
+  </script>
+
+  <!-- ============ 方式二：模块脚本 <script type="module"> + import（私有、需服务器） ============ -->
+  <!--
+    使用 import/export。自带私有作用域：导出的东西外部拿不到；自动严格模式；默认 defer（等 DOM 解析完才跑）。
+    适合：现代项目，需要复用、依赖清晰、避免全局污染。
+  -->
+  <script type="module">
+    import { add, PI } from "./11-math.js";
+    console.log("[模块脚本] add(2,3) =", add(2, 3)); // 5
+    console.log("[模块脚本] PI =", PI);              // 3.14
+    // 关键：模块里的 add 不会挂到 window，外部（含方式一的脚本）都调不到它。
+  </script>
+
+  <!-- ============ 方式三：动态导入 import()（按需、运行时） ============ -->
+  <!--
+    import() 是个函数，能在"运行时"才去加载模块，返回 Promise。
+    适合：只有某个操作（如点击、路由切换）才需要的大块代码，避免首屏全量加载。
+  -->
+  <script type="module">
+    const btn = document.querySelector("#lazy");
+    btn.addEventListener("click", async () => {
+      const mod = await import("./11-math.js"); // 点了才去加载
+      console.log("[动态导入] add(10,20) =", mod.add(10, 20));
+    });
+  </script>
+</body>
+</html>

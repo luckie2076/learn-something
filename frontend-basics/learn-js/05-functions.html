@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>05 · 函数</title>
+</head>
+<body>
+  <h1>函数</h1>
+
+  <script>
+    // 为什么需要函数？把一段逻辑"命名并打包"，可重复调用、可抽象。
+    // 没有函数，代码只能从上往下平铺，重复逻辑到处拷贝、改一处要改十处。
+
+    // 声明式：会被"提升"，调用甚至可以写在定义之前。
+    function add(x, y) {
+      return x + y; // return 把结果交回调用处
+    }
+    console.log(add(1, 2)); // 3
+
+    // 函数是"一等公民"：能像值一样赋值、传参、返回。
+    const multiply = function(x, y) { return x * y; };
+    console.log(multiply(2, 3)); // 6
+
+    // 因为能当参数传，于是有了"回调"：把函数交给别人，让它回头调用。
+    function run(fn) { fn(); }
+    run(function() { console.log("被回调了"); });
+
+    // 箭头函数：更短的写法，且 this 不绑定自己（继承外层作用域）。
+    const square = x => x * x;
+    console.log(square(4)); // 16
+
+    // 为什么箭头函数的 this 重要？下面 09/10 会用到——
+    // 普通函数的 this 随"怎么调用"变，箭头函数固定取定义处的作用域，少踩坑。
+  </script>
+</body>
+</html>

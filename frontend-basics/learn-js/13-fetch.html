@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>13 · fetch 网络请求</title>
+</head>
+<body>
+  <h1>fetch 获取数据</h1>
+
+  <script>
+    // 为什么需要 fetch？网页常要从服务器"拿数据"（通常是 JSON）再渲染。
+    // fetch 返回 Promise（呼应 10），所以配合 async/await 最顺手。
+    async function load() {
+      // 公开测试接口；你自己的接口换成你的 URL 即可。
+      const res = await fetch("https://jsonplaceholder.typicode.com/todos/1");
+      const data = await res.json(); // 把响应体解析成 JS 对象
+      console.log(data);
+    }
+    load();
+
+    // 注意：file:// 下可能受 CORS 限制；正式项目用本地服务器或同域接口。
+  </script>
+</body>
+</html>

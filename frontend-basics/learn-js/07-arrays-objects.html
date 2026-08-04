@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>07 · 数组与对象</title>
+</head>
+<body>
+  <h1>数组与对象</h1>
+
+  <script>
+    // 原始类型只能装单个值；复合类型装"一组"。
+
+    // 对象：键值对，把"相关的数据"聚在一起（比一堆散变量清晰）。
+    const person = { name: "小明", age: 18 };
+    console.log(person.name); // 点语法取属性
+
+    // 数组：有序集合，适合"同类多项"。
+    const nums = [1, 2, 3];
+
+    // 为什么推荐 map / filter / reduce，而不是手写 for？
+    // 它们表达"意图"而非"步骤"：你想"变换/筛选/汇总"，而不是纠结下标怎么走。
+    const doubled = nums.map(n => n * 2);            // 变换：[2, 4, 6]
+    const evens = nums.filter(n => n % 2 === 0);     // 筛选：[2]
+    const sum = nums.reduce((acc, n) => acc + n, 0); // 汇总：6
+    console.log(doubled, evens, sum);
+
+    // 关键点：map / filter 不改原数组，返回"新数组"——
+    // 这种"不变性"让数据流向更清晰、更易调试（你总能确定原数据没被动过）。
+  </script>
+</body>
+</html>

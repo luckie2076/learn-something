@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>00-02 · 练习：内部样式表</title>
+  <style>
+    /* 方式 2 · 内部样式表：<style> 写在 <head> 里，
+       里面的规则对整个「本页面」生效。 */
+    .box {
+      color: #1565c0;
+      background: #e3f2fd;
+      padding: 12px;
+      border-radius: 8px;
+    }
+    .box + .box { margin-top: 10px; }
+  </style>
+</head>
+<body>
+  <h1>内部样式表（&lt;style&gt; 在 head 里）</h1>
+
+  <div class="box">第一个盒子（被本页 &lt;style&gt; 里的 .box 规则美化）</div>
+  <div class="box">第二个盒子（复用同一条 .box 规则）</div>
+
+  <!--
+    为什么叫"内部"？样式写在本页 HTML 内，随页面一起下载。
+    好处：单文件自包含，适合「一个页面的演示 / 练习」（本仓库所有章节都这样写）。
+    缺点：样式锁死在这一页，多个页面想共用同一套样式时，就得各自复制一份。
+    要解决复用问题 → 看下一项 00-03-external.html（外部样式表）。
+  -->
+  <p><a href="00-01-inline.html">← 上一项：内联</a> · <a href="00-03-external.html">下一项：外部样式表 →</a></p>
+</body>
+</html>

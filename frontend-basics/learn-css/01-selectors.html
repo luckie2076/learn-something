@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>01 · 选择器</title>
+  <style>
+    /* 选择器就是"地址"：告诉浏览器「这条规则作用于谁」。 */
+
+    /* 1) 基础选择器 */
+    p { color: #444; }                      /* 元素：所有 <p> */
+    .card {                                 /* 类：最常用 */
+      border: 3px solid #e91e63;            /* 粗边框，一眼可见 */
+      background: #fce4ec; padding: 10px;    /* 加底色+内边距，盒子感更强 */
+    }
+    #header {                               /* ID：整页应唯一 */
+      background: #222; color: #fff; padding: 10px; font-size: 18px;
+    }
+
+    /* 2) 组合选择器（用「关系」定位） */
+    .list li { color: #1565c0; }            /* 后代：.list 内所有 <li>（含嵌套） */
+    .list > li {                            /* 子：仅「直接子」<li> */
+      font-weight: bold; background: #e3f2fd; padding: 4px;
+    }
+    h2 + p {                                /* 相邻兄弟：紧跟 h2 的第一个 p */
+      background: #fff3cd; padding: 6px;     /* 黄色高亮，明显区别于后面 */
+    }
+    h2 ~ p { color: #d32f2f; font-style: italic; } /* 通用兄弟：h2 后所有同级 p */
+
+    /* 3) 分组：多个选择器共用同一条规则 */
+    h1, h2, h3 { font-family: sans-serif; }
+
+    /* 为什么优先用「类」而非「ID」？
+       · 复用：一个类可贴给任意多个元素；ID 语义上唯一。
+       · 叠加：一个元素能同时 class="card active"，规则可组合；ID 无法叠加。
+       · 特异性更低（见 08 章），更易被后续规则覆盖、更好维护。 */
+  </style>
+</head>
+<body>
+  <h1>选择器：给元素贴地址</h1>
+
+  <h2>① 基础选择器</h2>
+  <div id="header">我是 #header（ID 选择器：深底白字）</div>
+  <p class="card">我是 .card（类选择器：粉色粗边框 + 底色盒子）</p>
+  <p>普通 &lt;p&gt;（元素选择器：深灰字）</p>
+
+  <h2>② 后代 vs 子选择器（关键区别）</h2>
+  <ul class="list">
+    <li>直接子项（子+后代都命中 → 加粗 + 蓝底）</li>
+    <li>直接子项
+      <ul><li>嵌套项（仅后代命中 → 蓝字但「不加粗、无蓝底」）</li></ul>
+    </li>
+  </ul>
+  <p>对比上面：嵌套的 &lt;li&gt; 是蓝色（被后代选择器命中），却没有加粗、没有蓝底（没被子选择器命中）——这就是「空格(后代)」与「&gt;(子)」的差别。</p>
+
+  <h2>③ 相邻 vs 通用兄弟</h2>
+  <h2>小标题 h2</h2>
+  <p>紧跟 h2 的第一个 p（相邻兄弟 +：黄底高亮）</p>
+  <p>第二个 p（通用兄弟 ~：红字斜体，无黄底）</p>
+  <p>第三个 p（同样通用兄弟 ~：红字斜体）</p>
+  <p>可见：相邻兄弟 <code>+</code> 只命中「紧挨 h2 的第一个 p」（黄底）；通用兄弟 <code>~</code> 命中「h2 之后所有同级 p」（红字斜体）。第一个 p 同时满足两者，所以黄底+红斜体。</p>
+
+  <p>三类选择器覆盖了 90% 场景：元素 / 类 / 组合。ID 只在「整页唯一锚点」时用。</p>
+</body>
+</html>

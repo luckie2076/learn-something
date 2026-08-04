@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>04 · 显示模式与文档流</title>
+  <style>
+    /* 显示模式决定元素「如何参与布局」 */
+    .block { display: block; width: 200px; background: #e3f2fd; }
+    /* block：独占一行、可设宽高 */
+
+    .inline { display: inline; background: #ffe0b2; }
+    /* inline：随文字流动、不换行、设宽高无效（被忽略） */
+
+    .ib { display: inline-block; width: 120px; height: 60px; background: #c8e6c9; vertical-align: top; }
+    /* inline-block：像 inline 一样排成一行，但又能设宽高 */
+
+    /* 为什么 inline-block 之间常出现莫名空隙？
+       因为 HTML 里元素间的「空白字符（换行/空格）」会被当成一个空格渲染。
+       解决：父级 font-size:0，或写在一行，或用 Flex（见 06 章）。 */
+    .gap-demo { font-size: 0; }      /* 消除空白间隙 */
+    .gap-demo .ib { font-size: 16px; }
+
+    /* 普通文档流（normal flow）= 默认布局规则：
+       block 自上而下堆叠，inline 自左向右排列、放不下才折行。
+       后面 05 章的 position、06/07 的 Flex/Grid，本质都是
+       「在文档流基础上做偏移或重排」。不懂流，就懂不了定位。 */
+  </style>
+</head>
+<body>
+  <h1>显示模式与文档流</h1>
+
+  <h2>block / inline / inline-block</h2>
+  <div class="block">block（占满一行）</div>
+  <div class="block">block（另起一行）</div>
+  <p><span class="inline">inline</span><span class="inline">inline 随文字流</span> 后面文字继续。</p>
+  <span class="ib">inline-block</span>
+  <span class="ib">inline-block 可设宽高</span>
+
+  <h2>inline-block 的间隙（与消除）</h2>
+  <div>
+    <span class="ib">有间隙</span>
+    <span class="ib">有间隙</span>
+  </div>
+  <div class="gap-demo">
+    <span class="ib">无间隙</span>
+    <span class="ib">无间隙</span>
+  </div>
+</body>
+</html>

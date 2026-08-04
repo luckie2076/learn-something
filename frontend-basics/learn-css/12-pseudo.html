@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>12 · 伪类与伪元素</title>
+  <style>
+    /* 伪类：选中元素的「某种状态/位置」 */
+    a { color: #333; }
+    a:hover { color: #e91e63; }              /* 鼠标悬停 */
+    a:focus { outline: 2px solid #2196f3; }  /* 键盘聚焦可见——无障碍必需 */
+    li:nth-child(2) { color: #ff9800; }      /* 选中第 2 个 <li> */
+
+    /* 伪元素：在元素「内部前后」造出一个虚拟节点，必须写 content */
+    .tag::before { content: "【"; color: #999; }
+    .tag::after  { content: "】"; color: #999; }
+
+    /* 历史用法：::after + clear 清除浮动（现代更推荐 Flex/Grid，见 06/07） */
+    .clearfix::after { content: ""; display: block; clear: both; }
+
+    /* 写法约定：伪类单冒号(:hover)，伪元素双冒号(::before)。
+       旧浏览器用单冒号也认伪元素，但新代码建议区分。 */
+  </style>
+</head>
+<body>
+  <h1>伪类与伪元素</h1>
+
+  <p><a href="#">悬停或键盘 Tab 聚焦我</a>（看 :hover / :focus 变化）</p>
+
+  <ul>
+    <li>第一项</li>
+    <li>第二项（:nth-child(2) 变橙）</li>
+    <li>第三项</li>
+  </ul>
+
+  <p class="tag">标签文字</p>
+  <p>伪元素 ::before/::after 在不改 HTML 的前提下插入装饰内容（如【】）。</p>
+</body>
+</html>

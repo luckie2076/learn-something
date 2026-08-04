@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>00-03 · 练习：外部样式表</title>
+
+  <!--
+    方式 3 · 外部样式表：用 <link> 引入一个独立的 .css 文件。
+    推荐用于正式项目——样式与结构彻底分离。
+  -->
+  <link rel="stylesheet" href="00-03-styles.css" />
+</head>
+<body>
+  <h1>外部样式表（&lt;link&gt; 引入 .css）</h1>
+
+  <div class="card">卡片（样式来自外部 00-03-styles.css）</div>
+  <p class="muted">说明文字（同样来自外部文件）</p>
+
+  <!--
+    为什么这是生产环境首选？
+      · 复用：一个 .css 可统一样式全站所有页面；
+      · 缓存：.css 被浏览器缓存，后续页面不再重复下载，加载更快；
+      · 单一真相源：改一个文件，全站生效；HTML 只管语义，CSS 只管表现。
+    提示：用本地服务器打开本文件（python3 -m http.server），
+    否则 file:// 下部分浏览器会拦截对 .css 的请求。
+  -->
+  <p><a href="00-02-internal.html">← 上一项：内部样式表</a> · <a href="00-00-basics.html">返回总览</a></p>
+</body>
+</html>

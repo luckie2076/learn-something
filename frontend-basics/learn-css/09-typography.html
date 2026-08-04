@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>09 · 文本与排版</title>
+  <style>
+    /* 字体系列必须写「回退链」：
+       用户机器未必装得上第一个字体，依次往后找，最后用通用族兜底。 */
+    .fallback { font-family: "PingFang SC", "Microsoft YaHei", sans-serif; }
+
+    /* line-height 用「无单位值」最稳：相对「自身字号」算行高，
+       子元素各自按自己的字号计算，不会继承一个固定像素行高。 */
+    .unitless { line-height: 1.6; font-size: 14px; }
+    .unitless span { font-size: 28px; }  /* 行高 = 28 × 1.6，仍协调 */
+
+    .px-lh { line-height: 22px; font-size: 14px; }
+    .px-lh span { font-size: 28px; }     /* 行高仍是 22px，大字会挤重叠 */
+
+    /* font 简写顺序有坑：必须  style weight size/line-height family
+       其中 size 和 family 不能省，且 family 必须放最后。 */
+    .short { font: italic bold 16px/1.5 sans-serif; }
+
+    /* 为什么用 rem 定字号？见 03 章：随根字号缩放、无障碍友好。 */
+  </style>
+</head>
+<body>
+  <h1>文本与排版</h1>
+
+  <p class="fallback">中文字体回退链：PingFang SC → 微软雅黑 → 通用无衬线。</p>
+
+  <p class="unitless">无单位行高 1.6：<span>其中大字</span> 行距随字号自适应，不挤。</p>
+  <p class="px-lh">固定 22px 行高：<span>其中大字</span> 容易和上下行重叠。</p>
+
+  <p class="short">font 简写：斜体 粗体 16px/1.5 无衬线。</p>
+</body>
+</html>

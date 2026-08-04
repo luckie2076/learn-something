@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>11 · 边框、圆角与阴影</title>
+  <style>
+    .base { width: 160px; height: 80px; margin: 10px; display: inline-block;
+            background: #fff; vertical-align: top; }
+
+    .radius { border: 2px solid #999; border-radius: 12px; }
+    /* border-radius 是对「四角」切圆角；50% 可做出正圆 */
+
+    .shadow { box-shadow: 2px 4px 8px rgba(0,0,0,.2); }
+    /* box-shadow: 水平偏移 垂直偏移 模糊半径 [扩展] 颜色 */
+
+    .multi { box-shadow: 0 2px 4px rgba(0,0,0,.2),
+                         0 8px 16px rgba(0,0,0,.12); } /* 多层叠加更自然 */
+
+    .inset { box-shadow: inset 0 2px 6px rgba(0,0,0,.25); }
+    /* inset 让阴影落「内部」，常用来做凹陷/输入框效果 */
+
+    /* 为什么层次感用阴影而非边框？
+       阴影是「绘制」出来的，不占布局空间，不影响盒模型尺寸；
+       边框会增加元素实际宽高（除非 box-sizing:border-box）。 */
+  </style>
+</head>
+<body>
+  <h1>边框、圆角与阴影</h1>
+
+  <div class="base radius">圆角边框</div>
+  <div class="base shadow">外阴影（浮起）</div>
+  <div class="base multi">多层阴影</div>
+  <div class="base inset">内阴影（凹陷）</div>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>02 · 盒模型</title>
+  <style>
+    /* 盒模型是 CSS 的"世界观"：每个元素都被当作一个矩形盒子，
+       由内到外分四层：
+         content（内容）  ← 你设的 width/height 指的是这一层
+         padding（内边距）← 内容与边框之间的"留白"
+         border （边框）
+         margin （外边距）← 盒子与其他盒子之间的"间距"
+       背景色会铺到 padding 层（不含 margin），margin 永远是透明的。 */
+
+    .box {
+      width: 200px;
+      height: 80px;
+      padding: 20px;          /* 四边各 20px 内边距 */
+      border: 10px solid #4caf50;
+      background: #e8f5e9;     /* 可见区域 = content + padding */
+      margin: 30px;           /* 盒子之间的透明间距 */
+    }
+
+    /* —— 为什么 box-sizing: border-box 几乎是必选项？——
+       默认 box-sizing 是 content-box：width 只算 content，
+       于是"实际占宽 = width + padding + border"。
+       你以为 200px 宽，结果元素占了 200+40+20 = 260px，布局常常"算错"。
+       border-box 让 width 直接包含 padding 和 border，
+       设多大就占多大，心智负担最低，是响应式布局的标配。 */
+    .border-box {
+      box-sizing: border-box;  /* 关键：让 width 包含 padding+border */
+    }
+
+    /* 对比演示：两个盒子都写 width:200px，但盒子模型不同 */
+    .a { box-sizing: content-box; }  /* 实际占 200+40+20 = 260px */
+    .b { box-sizing: border-box; }   /* 实际就占 200px */
+
+    /* —— margin 塌陷（collapse）——
+       上下相邻的两个块级盒子，它们的垂直 margin 不会"相加"，
+       而是取较大值（塌成一层），而不是 30+30=60。
+       这是 CSS 的既定规则，目的是让段落间距不"翻倍"。
+       注意：左右 margin 不塌陷；只有「垂直、相邻、块级」才会。 */
+    .stack { margin: 30px 0; }
+
+    hr { margin: 40px 0; }
+  </style>
+</head>
+<body>
+  <h1>盒模型：每个元素都是盒子</h1>
+
+  <h2>1) 四层结构</h2>
+  <div class="box">content（绿底是 padding，含在背景里）</div>
+  <p>元素实际占据的宽度 = content(200) + padding(左右各20) + border(左右各10) = 260px。
+     外圈的 margin(30) 是与其他元素的透明间距，不计入自身宽高。</p>
+
+  <hr />
+
+  <h2>2) 为什么推荐 box-sizing: border-box</h2>
+  <div class="box a">content-box（width 不含 padding/border，实际 260px 宽）</div>
+  <div class="box b border-box">border-box（width 含 padding/border，实际 200px 宽）</div>
+  <p>两个盒子都写了 <code>width:200px</code>，但占宽不同——
+     这正是日常布局"明明设了宽度却对不齐"的根因。解决：给全局加
+     <code>* { box-sizing: border-box; }</code>。</p>
+
+  <hr />
+
+  <h2>3) margin 塌陷</h2>
+  <div class="box stack">上盒子 margin:30</div>
+  <div class="box stack">下盒子 margin:30</div>
+  <p>两盒垂直间距不是 60，而是 30（取较大值）。这是 CSS 的垂直 margin 塌陷规则。</p>
+</body>
+</html>

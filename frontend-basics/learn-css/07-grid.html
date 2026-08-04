@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>07 · Grid 二维布局</title>
+  <style>
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr 1fr; /* 三列：比例 1:2:1 */
+      grid-template-rows: 80px 80px;       /* 两行，各 80px */
+      gap: 10px;                           /* 行列间距统一（替代 margin） */
+    }
+    .grid > div { background: #b2dfdb; padding: 10px; }
+    .span2 { grid-column: span 2; background: #80cbc4; } /* 跨两列 */
+
+    /* 为什么需要 Grid（而 Flex 不够）？
+       Flex 是一维：要么排一行、要么排一列，很难同时精确控制行列。
+       Grid 是二维：直接定义「列宽 + 行高」，天然适合卡片墙、仪表盘。
+       经验：一行/一列用 Flex；整片行列网格用 Grid。 */
+  </style>
+</head>
+<body>
+  <h1>Grid：二维布局</h1>
+
+  <div class="grid">
+    <div>列1</div><div>列2(占2份宽)</div><div>列3</div>
+    <div class="span2">跨两列的块</div><div>列3</div>
+  </div>
+
+  <p><code>fr</code> = 剩余空间的一等份，像 Flex 的 <code>flex</code> 但用于网格。
+     <code>gap</code> 一次性设行列间距，比给每个格子加 margin 干净。</p>
+</body>
+</html>

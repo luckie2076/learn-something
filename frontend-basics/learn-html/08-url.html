@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>08 · URL 定位方式</title>
+  <!--
+    <base> 改写“基准地址(base URL)”：本页所有相对 URL 都不再以“当前文件地址”为准，
+    而是以这里为准。注释掉它，下面那些相对链接就会改用本文件真实路径解析——
+    这正是理解“相对 URL 如何拼接”最直观的开关。
+  -->
+  <!-- <base href="https://example.com/docs/" /> -->
+</head>
+<body>
+  <h1>URL 定位方式</h1>
+  <p>浏览器拿到一个 href 后，会用「基准地址」和它拼接成真正能访问的地址。基准地址默认是“当前页面地址”，可被 &lt;base&gt; 改写。</p>
+
+  <h2>1. 绝对 URL</h2>
+  <!-- 自带协议+域名+路径，不依赖当前页面，永远指向同一处 -->
+  <a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML">MDN（绝对地址）</a>
+
+  <h2>2. 文档相对 URL</h2>
+  <!--
+    基于“基准地址所在目录”拼接；./ 可省略，08-page2.html 等价于 ./08-page2.html。
+    注意：这里说的“基准地址”默认是当前文件，但若上面有 <base>，就改以 <base> 的目录为准——
+    这也是为什么本页此刻解析到的并不是和 08-url.html 同目录的真实文件。
+  -->
+  <a href="08-page2.html">同目录文件（文档相对）</a>
+
+  <h2>3. 父级相对 URL</h2>
+  <!-- .. 表示回退一层目录，用于从子目录回到上级找资源 -->
+  <a href="../css/style.css">上级目录的样式（父级相对）</a>
+
+  <h2>4. 根相对 URL</h2>
+  <!-- 以 / 开头，从“站点根目录”算起。目录再深都稳定；但 file:// 或换子域名时会失效 -->
+  <a href="/assets/logo.png">站点根下的资源（根相对）</a>
+
+  <h2>5. 锚点 / 片段</h2>
+  <!-- # 后是页面内某元素的 id；other.html#sec 则是跳到另一个页面的具体段落 -->
+  <a href="#top">跳到本页顶部</a>
+  <a href="other.html#sec">跳到另一页的 #sec 段落</a>
+
+  <h2>6. 查询参数</h2>
+  <!-- ? 之后是键值对，用来向页面/服务器传参；多个参数用 & 连接 -->
+  <a href="search.html?q=html&page=2">带参数的搜索链接</a>
+
+  <h2>7. 特殊 scheme</h2>
+  <!-- 协议头决定浏览器用什么程序处理，不只是 http -->
+  <a href="mailto:me@example.com">发邮件</a>
+  <a href="tel:+8610000000">打电话</a>
+
+  <h2>观察建议</h2>
+  <p>用本地服务器（<code>python3 -m http.server</code>）打开本页，再把鼠标悬停在链接上看浏览器状态栏解析出的完整地址；然后注释掉 &lt;base&gt; 刷新，对比相对地址如何变化。</p>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>12 · localStorage</title>
+</head>
+<body>
+  <input id="name" placeholder="输入名字" />
+  <button id="save">保存</button>
+
+  <script>
+    // 为什么需要 localStorage？JS 的普通变量在"刷新页面"后就没了。
+    // localStorage 是浏览器给的"本地小仓库"，按 键=值 存字符串，关掉网页也在。
+    const input = document.querySelector("#name");
+    const btn = document.querySelector("#save");
+
+    // 刷新后还能读回来（|| "" 给个空兜底）：
+    input.value = localStorage.getItem("name") || "";
+
+    btn.addEventListener("click", function() {
+      localStorage.setItem("name", input.value); // 存
+      console.log("已保存，刷新页面再打开还在");
+    });
+
+    // 注意：只能存字符串，对象要先 JSON.stringify(obj)，读取再 JSON.parse()。
+  </script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>08 · 层叠、继承与优先级</title>
+  <style>
+    /* 当多条规则作用同一元素时，浏览器按三层顺序解决冲突：
+       ① 来源/重要性（!important > 普通；作者样式 > 浏览器默认）
+       ② 特异性（specificity，越「具体」越赢）
+       ③ 源码顺序（特异性相同，后写的赢） */
+
+    /* 特异性记作 (ID, 类, 元素) */
+    p        { color: blue; }            /* (0,0,1) 元素 */
+    p.text   { color: green; }           /* (0,1,1) 类+元素 → 胜出 */
+    #unique  { color: red; }             /* (1,0,0) ID → 最高 */
+
+    /* 同特异性、后写者赢 */
+    .a { color: gray; }
+    .a { color: black; }                 /* 这条后写，生效 */
+
+    .parent { color: purple; border: 2px solid; }
+    /* 继承：子元素未设 color 时，继承父的 purple；
+       但 border 不会继承（边框若继承，每个子元素都套边框，通常不是你要的）。 */
+
+    /* !important 会压过特异性，但破坏层叠可预测性，
+       只在「必须覆盖第三方样式」等极少数场景用，是「最后手段」。 */
+
+    .imp { color: orange !important; }   /* 即使特异性低，也强制胜出 */
+  </style>
+</head>
+<body>
+  <h1>层叠、继承与优先级</h1>
+
+  <p class="text" id="unique">这段文字同时被 p / .text / #unique 命中，最终红色（ID 特异性最高）。</p>
+
+  <p class="a">同特异性后写者赢 → 黑色</p>
+
+  <div class="parent">
+    父(purple，有边框)
+    <p>子元素没设 color → 继承 purple；但看不到边框（border 不继承）。</p>
+  </div>
+
+  <p class="imp" style="color:red">内联 red，但 .imp 有 !important → 橙色强制胜出</p>
+
+  <p>记住口诀：冲突先看「谁更具体（ID&gt;类&gt;元素）」，再看「谁写在后」，最后才轮到 !important。</p>
+</body>
+</html>

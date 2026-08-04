@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>05 · 定位 position</title>
+  <style>
+    .box { padding: 8px; margin-bottom: 12px; border: 1px dashed #999; }
+
+    .relative { position: relative; top: 10px; left: 10px; background: #bbdefb; }
+    /* relative：相对「自己原来的位置」偏移；原位置仍被占着（不脱离流） */
+
+    .container { position: relative; height: 120px; border: 1px solid #666; }
+    /* 关键：给容器设 position（非 static），它就成了内部 absolute 的「包含块」 */
+    .absolute { position: absolute; top: 10px; right: 10px; background: #ffcdd2; }
+    /* absolute：脱离文档流；相对「最近的定位祖先」定位，而非相对 <body> */
+    /* 如果祖先都没定位，就会一路找到 <body>/视口，布局往往错位 */
+
+    .fixed { position: fixed; bottom: 12px; right: 12px; background: #d1c4e9; }
+    /* fixed：相对「视口」定位，滚动时不动（小心遮挡内容） */
+
+    .sticky { position: sticky; top: 0; background: #c8e6c9; }
+    /* sticky：默认像 relative 随流走；滚到 top:0 后变 fixed 吸顶 */
+  </style>
+</head>
+<body>
+  <h1>定位 position：如何脱离/偏移文档流</h1>
+
+  <div class="box relative">relative：向右下偏移 10px，原位仍占位</div>
+
+  <h2>absolute 要找「定位祖先」</h2>
+  <div class="container">
+    容器（position: relative，作为包含块）
+    <div class="absolute">absolute 贴容器右上角</div>
+  </div>
+
+  <h2>sticky 吸顶</h2>
+  <div class="sticky">我是 sticky 条，滚动过 top:0 会吸住</div>
+  <p style="height:600px">向下滚动页面，观察上面 sticky 条与右下角 fixed 块。<br>
+    为什么需要 position？因为「文档流」默认排布太死板；
+    position 让我们能精确把元素钉在相对某参照物的位置。</p>
+
+  <div class="fixed">fixed：相对视口，始终在右下角</div>
+</body>
+</html>

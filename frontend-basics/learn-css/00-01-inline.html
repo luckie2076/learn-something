@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>00-01 · 练习：内联样式</title>
+</head>
+<body>
+  <h1>内联样式（写在标签里）</h1>
+
+  <!--
+    方式 1 · 内联样式：把 CSS 直接写在元素的 style 属性上。
+    它只作用于「这一个元素」，且特异性最高（见 08 章），
+    页面里其它 <style> 或外部 CSS 的规则都盖不过它（除非用 !important）。
+  -->
+  <p style="color: #e91e63; font-size: 20px;">
+    这段文字的样式写在标签里（内联）
+  </p>
+
+  <p style="background: #e3f2fd; padding: 10px; border-radius: 8px;">
+    另一个内联样式的元素
+  </p>
+
+  <!--
+    为什么通常避免内联样式？
+      · 结构与表现混在一行，HTML 变脏、难读；
+      · 无法复用：同样的外观要复制粘贴到每个元素；
+      · 特异性过高，后续想用统一 CSS 覆盖会很麻烦。
+    适用场景：快速临时调试，或邮件 / 某些 CMS 只能内联的环境。
+  -->
+  <p style="color: #666; font-size: 14px;">
+    对照：上面两个样式都不能被本页其它 CSS 统一改写——这正是内联的局限。
+  </p>
+
+  <p><a href="00-00-basics.html">← 返回总览</a> · <a href="00-02-internal.html">下一项：内部样式表 →</a></p>
+</body>
+</html>

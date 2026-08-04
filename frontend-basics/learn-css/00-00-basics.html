@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>00 · 引入与基本语法</title>
+
+  <!--
+    CSS 有 3 种"贴"到 HTML 上的方式。下面先用最直观的「内部样式表」，
+    但必须先讲清：为什么我们通常不这么用，而用更"麻烦"的外部文件。
+  -->
+  <style>
+    /* —— 规则结构：选择器 { 属性: 值; } ——
+       一条规则 = "选谁" + "改成什么样"。
+       分号分隔多条声明；最后一个声明后的分号可省，但写上更不易出错。 */
+    p {
+      color: #333;      /* 属性名和值小写、用冒号连接 */
+      line-height: 1.6;
+    }
+
+    .note {
+      border-left: 4px solid #4caf50;
+      padding: 8px 12px;
+      background: #f0f9f0;
+    }
+  </style>
+</head>
+<body>
+  <h1>CSS 是怎么作用于 HTML 的</h1>
+
+  <!--
+    方式 1 · 内联样式（写在标签里）
+    <p style="color:red">…</p>
+    问题：样式和结构与「同一行」混在一起，无法复用、无法集中维护，
+          且特异性最高、最难被外部规则覆盖。仅适合一次性临时调试。
+  -->
+
+  <!--
+    方式 2 · 内部样式表（本文件用的 <style>，见 <head>）
+    好处：单文件自包含，适合「一个页面的演示 / 练习」。
+    缺点：样式锁死在这一页，多页无法共享。
+  -->
+
+  <!--
+    方式 3 · 外部样式表（推荐，正式项目用这个）
+    <link rel="stylesheet" href="styles.css" />
+    为什么它最好？
+      · 复用：一个 .css 文件可以统一样式所有页面；
+      · 缓存：CSS 文件被浏览器缓存，后续页面加载更快；
+      · 单一真相源：改一处就能全站生效，符合「关注点分离」——
+        HTML 管"是什么(语义)"，CSS 管"长什么样(表现)"。
+    后续章节为了「单文件可独立打开」，仍会沿用内部 <style>，
+    但请记住：真实项目请用 <link> 外部样式表。
+  -->
+
+  <p class="note">
+    一句话记住规则：<code>选择器 { 属性: 值; }</code>。
+    你写的每一条 CSS，都是在回答两个问题——「选谁」和「改成什么样」。
+  </p>
+
+  <p>
+    三种引入方式都做成了可运行练习，建议按编号顺序点开对比：
+    <a href="00-01-inline.html">00-01-inline.html</a>（内联）、
+    <a href="00-02-internal.html">00-02-internal.html</a>（内部样式表）、
+    <a href="00-03-external.html">00-03-external.html</a>（外部样式表，配 00-03-styles.css）。
+  </p>
+</body>
+</html>

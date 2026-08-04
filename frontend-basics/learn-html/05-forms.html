@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8" /><title>05 · 表单</title></head>
+<body>
+  <!-- action 是提交地址，method 常用 get/post -->
+  <form action="/submit" method="post">
+    <!-- label 的 for 关联 input 的 id：点击文字即可聚焦，且对读屏友好 -->
+    <label for="name">姓名：</label>
+    <input id="name" name="name" type="text" required />
+
+    <label for="email">邮箱：</label>
+    <input id="email" name="email" type="email" />
+
+    <label for="pwd">密码：</label>
+    <input id="pwd" name="pwd" type="password" />
+
+    <p>性别：
+      <label><input type="radio" name="gender" value="m" /> 男</label>
+      <label><input type="radio" name="gender" value="f" /> 女</label>
+    </p>
+
+    <label for="city">城市：</label>
+    <select id="city" name="city">
+      <option value="bj">北京</option>
+      <option value="sh">上海</option>
+    </select>
+
+    <label for="bio">简介：</label>
+    <textarea id="bio" name="bio" rows="3"></textarea>
+
+    <button type="submit">提交</button>
+  </form>
+</body>
+</html>

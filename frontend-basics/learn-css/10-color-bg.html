@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>10 · 颜色、背景与渐变</title>
+  <style>
+    .hex { color: #4caf50; }
+    .rgb { color: rgb(76, 175, 80); }
+    /* hsl = 色相(0-360) 饱和度(%) 亮度(%)；调色最直观：
+       只要改亮度就能拿到同色系深浅，改色相就能整体换色调。 */
+    .hsl { color: hsl(122, 39%, 39%); }
+    .hsla { background: hsla(122, 39%, 39%, 0.3); } /* 带透明度 */
+
+    .gradient {
+      /* 渐变本质是一张「图片」(image)，所以写在 background-image 上 */
+      background-image: linear-gradient(135deg, #4caf50, #2196f3);
+      color: #fff; padding: 20px;
+    }
+
+    .layers {
+      /* 多层背景：先写的在上层；可混用图片与渐变 */
+      background-image: linear-gradient(rgba(0,0,0,.3), rgba(0,0,0,.3)),
+                        url("https://picsum.photos/200");
+      color: #fff; padding: 20px;
+    }
+
+    /* 为什么用 hsl 而不是 hex？
+       hex 是"机器友好"的 16 进制，人很难从中看出颜色；
+       hsl 把颜色拆成「色相/饱和/亮度」，做主题、调明暗时一眼可控。 */
+  </style>
+</head>
+<body>
+  <h1>颜色、背景与渐变</h1>
+
+  <p><span class="hex">hex</span> · <span class="rgb">rgb</span> · <span class="hsl">hsl</span> · <span class="hsla">hsla 半透明底</span> 三者视觉几乎相同，写法不同。</p>
+
+  <div class="gradient">linear-gradient：渐变是「图片」，写进 background-image</div>
+  <div class="layers" style="margin-top:10px">多层背景：渐变蒙版压在图片之上</div>
+</body>
+</html>

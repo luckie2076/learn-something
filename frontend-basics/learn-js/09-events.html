@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>09 · 事件</title>
+</head>
+<body>
+  <button id="a">点我</button>
+  <ul id="list">
+    <li>第一项</li>
+    <li>第二项</li>
+  </ul>
+
+  <script>
+    // 事件：用户的操作（点击、输入…）触发 JS 响应。这是"交互"的本质。
+
+    // 推荐 addEventListener（结构与行为分离），而不是在 HTML 里写 onclick="..."。
+    const a = document.querySelector("#a");
+    a.addEventListener("click", function() {
+      console.log("被点了");
+    });
+
+    // 事件冒泡：点击子元素，事件会一路"冒"到祖先。
+    // 事件委托：只在父元素挂一个监听，利用冒泡处理所有子元素——
+    // 为什么高效？新增/删除子项不用逐个绑监听，且少创建函数。
+    const list = document.querySelector("#list");
+    list.addEventListener("click", function(e) {
+      // e.target 是真正被点的那个子元素
+      console.log("点到：", e.target.textContent);
+    });
+  </script>
+</body>
+</html>
