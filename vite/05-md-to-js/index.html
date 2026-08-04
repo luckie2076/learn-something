@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <title>单元05 - Markdown 转 JS 模块</title>
+  </head>
+  <body>
+    <h1>单元 05：综合实战 · Markdown → JS 模块</h1>
+    <p>下面的内容由 <code>example.md</code> 经插件转换后渲染：</p>
+    <div id="content"></div>
+    <script type="module">
+      import md from './example.md'
+      console.log('md 模块：', md)
+      document.getElementById('content').innerHTML = md.html
+    </script>
+  </body>
+</html>

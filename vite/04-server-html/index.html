@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <title>单元04 - 服务器与 HTML</title>
+  </head>
+  <body>
+    <h1>单元 04：configureServer + transformIndexHtml</h1>
+    <p>页面顶部应有一个由插件注入的横幅。</p>
+    <button id="call">调用 /api/hello</button>
+    <pre id="out"></pre>
+    <script type="module">
+      document.getElementById('call').addEventListener('click', async () => {
+        const r = await fetch('/api/hello')
+        const data = await r.json()
+        document.getElementById('out').textContent = JSON.stringify(data, null, 2)
+      })
+    </script>
+  </body>
+</html>

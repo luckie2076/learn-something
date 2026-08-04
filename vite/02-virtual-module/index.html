@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <title>单元02 - 虚拟模块</title>
+  </head>
+  <body>
+    <h1>单元 02：虚拟模块（resolveId + load）</h1>
+    <p>打开浏览器控制台查看来自虚拟模块的内容。</p>
+    <script type="module">
+      // 这个 'virtual:hello' 并不存在于磁盘上，由插件凭空提供
+      import { msg } from 'virtual:hello'
+      console.log(msg)
+      document.body.insertAdjacentHTML('beforeend', `<p>${msg}</p>`)
+    </script>
+  </body>
+</html>

@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <title>单元03 - transform</title>
+  </head>
+  <body>
+    <h1>单元 03：transform（代码转换）</h1>
+    <!-- <p>把一个自定义 <code>.toy</code> 文本编译成 JS 对象后导入。看控制台。</p> -->
+    <script type="module">
+      import { msg} from 'virtual:data.toy'
+      console.log('编译结果：', msg)
+      document.body.insertAdjacentHTML(
+        'beforeend',
+        `<pre>${msg}</pre>`,
+      )
+    </script>
+  </body>
+</html>
