@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+/* 手写的 .btn —— 与左侧原子类按钮外观完全一致 */
+.btn {
+  padding: 0.5rem 1rem;     /* = py-2 px-4 */
+  border-radius: 0.25rem;  /* = rounded */
+  background: #2563eb;      /* = bg-blue-600 */
+  color: #fff;              /* = text-white */
+}
