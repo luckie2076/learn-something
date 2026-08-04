@@ -1,0 +1,13 @@
+{
+  "root": true,
+  "env": {
+    "browser": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2022
+  },
+  "extends": ["eslint:recommended", "prettier"],
+  "rules": {
+    "no-var": "error"
+  }
+}

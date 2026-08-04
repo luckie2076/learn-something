@@ -1,0 +1,10 @@
+/* 后处理演示用的「已生成的 CSS」：模拟 Sass 之类编译出来的产物。
+   注意这里已经是普通 CSS，后处理要做的只是按浏览器兼容性补前缀。 */
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  transform: translateX(10px);
+  user-select: none;
+}

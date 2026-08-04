@@ -1,0 +1,11 @@
+// 全局样式：阶段三的「预处理」——变量 + 嵌套，构建时编译成普通 CSS。
+$primary: #3498db;
+
+body {
+  margin: 0;
+  background: $primary;
+
+  .title {
+    font-weight: bold;
+  }
+}

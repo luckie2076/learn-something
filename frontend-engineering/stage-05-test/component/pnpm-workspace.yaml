@@ -1,0 +1,4 @@
+# 本目录是一个独立可运行的最小示例（组件测试层）。
+# Vitest 4 底层是 Vite 8，Vite 8 用 Rolldown（Rust）替代了旧版的 esbuild。
+# Rolldown 原生二进制以预编译形式分发、无构建脚本需批准；happy-dom 提供 DOM 环境，纯 JS 同样无需批准。
+packages: [ '.' ]

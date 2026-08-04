@@ -1,0 +1,7 @@
+# 本目录是一个独立可运行的最小示例。
+# 用 pnpm-workspace.yaml 声明「构建脚本审批」：sass 会顺带拉 @parcel/watcher（Go 编译的原生
+# 二进制，安装时带构建脚本），它在 pnpm 11 下必须显式批准才能跑安装脚本。Webpack 本体、ts-loader
+# 等都是纯 JS，无需批准；这里只批 sass 这条原生依赖链。
+packages: [ '.' ]
+allowBuilds:
+  '@parcel/watcher': true

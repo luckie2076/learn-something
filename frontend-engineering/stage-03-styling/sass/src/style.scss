@@ -1,0 +1,28 @@
+// ===== 预处理：Sass 演示 =====
+// 1) 变量：统一管理设计令牌
+$primary: #3498db;
+$radius: 8px;
+
+// 2) mixin：复用一段样式（类似 JS 里的函数）
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// 3) 嵌套：结构即层级，少写重复选择器
+.card {
+  color: $primary;
+  border-radius: $radius;
+  padding: 16px;
+
+  .title {
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  // 4) 用到需要厂商前缀的属性 —— 留给后处理(autoprefixer)演示
+  @include flex-center;
+  transition: all 0.3s ease;
+  transform: translateX(10px);
+}

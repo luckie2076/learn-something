@@ -1,0 +1,4 @@
+/* Tailwind v4 入口：一条指令就把整套原子类「引入」待处理的 CSS。
+   Tailwind 会扫描本项目里的 .html/.js 等文件，
+   找出用到的原子类，只把「真正用到」的生成进产物（按需生成）。 */
+@import "tailwindcss";

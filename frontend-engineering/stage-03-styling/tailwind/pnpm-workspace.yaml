@@ -1,0 +1,8 @@
+# 本目录是独立可运行的最小示例。
+# 两个原生（带构建脚本）依赖需 pnpm 11 显式批准，否则 install / run 会被拦：
+#   - @tailwindcss/oxide ：Tailwind v4 的 Rust 引擎（必需）
+#   - @parcel/watcher    ：被 @tailwindcss/cli 间接拉入，仅用于 --watch（本例用不到，但状态检查会拦 pnpm run）
+packages: ['.']
+allowBuilds:
+  '@tailwindcss/oxide': true
+  '@parcel/watcher': true

@@ -1,0 +1,8 @@
+# 本目录是一个独立可运行的最小示例。
+# 用 pnpm-workspace.yaml 声明「构建脚本审批」：Sass 会把 @parcel/watcher
+#（原生文件监听库，仅用于 --watch）作为可选依赖拉进来，它在安装时带构建脚本；
+# pnpm 11 要求显式批准，这里把它列入 allowBuilds。演示用不到监听，但用标准工具
+# 就不绕开它——批准即可，常见平台只是下载预编译二进制，不会现场编译。
+packages: ['.']
+allowBuilds:
+  '@parcel/watcher': true

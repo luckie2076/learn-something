@@ -1,0 +1,12 @@
+{
+  "name": "stage-03-styling-sass",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "sass src/style.scss dist/style.css",
+    "watch": "sass --watch src/style.scss dist/style.css"
+  },
+  "devDependencies": {
+    "sass": "^1.77.0"
+  }
+}

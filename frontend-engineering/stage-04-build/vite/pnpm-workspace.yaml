@@ -1,0 +1,10 @@
+# 本目录是一个独立可运行的最小示例。
+# pnpm 11 要求显式批准带构建脚本的原生依赖。本例只批一个：
+#   - @parcel/watcher ：被直接依赖的 sass 顺带拉入，仅用于 --watch；本例用不到，
+#     但 pnpm 的状态检查会拦任何 pnpm run，故照样得批准（「闸门拦的是脚本、不是编译」）。
+# 注意：Vite 8 底层是 Rolldown（Rust 打包器，原生二进制预编译分发、无构建脚本），
+# 无需批准；esbuild 在 Vite 8 里只是未启用的可选 peer。这与阶段五 unit 示例
+# 「Vite 8 不再需要 allowBuilds」的结论一致——区别只在于本例额外装了 sass。
+packages: [ '.' ]
+allowBuilds:
+  '@parcel/watcher': true

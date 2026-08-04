@@ -1,0 +1,4 @@
+# 本目录是一个独立可运行的最小示例（脚手架层）。
+# 注意：脚手架 CLI 只用 Node 内置模块，零第三方依赖 —— 因此没有原生构建脚本，
+# 不需要 pnpm 11 的 allowBuilds 配置（对比 Vitest4/Vite8 示例里 Rolldown 那种预编译二进制）。
+packages: [ '.' ]

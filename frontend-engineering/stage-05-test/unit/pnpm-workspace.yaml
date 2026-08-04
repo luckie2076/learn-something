@@ -1,0 +1,5 @@
+# 本目录是一个独立可运行的最小示例（单元测试层）。
+# Vitest 4 底层是 Vite 8，Vite 8 用 Rolldown（Rust）替代了旧版的 esbuild。
+# 关键变化：Rolldown 的原生二进制以「预编译」形式（napi optionalDependency）分发，
+# 没有构建脚本需要 pnpm 11 批准 —— 因此不再需要 Vite 7/esbuild 时代那行 allowBuilds 配置。
+packages: [ '.' ]

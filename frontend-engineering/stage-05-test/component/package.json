@@ -1,0 +1,15 @@
+{
+  "name": "stage-05-test-component",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "devDependencies": {
+    "vitest": "^4.0.0",
+    "@testing-library/dom": "^10.4.0",
+    "happy-dom": "^15.0.0"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "stage-06-scaffold",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "bin": {
+    "create-my-app": "./index.js"
+  },
+  "scripts": {
+    "start": "node index.js"
+  }
+}

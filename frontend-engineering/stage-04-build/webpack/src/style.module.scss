@@ -1,0 +1,9 @@
+// CSS Modules + Sass：文件名带 .module 让 css-loader 自动开启 CSS Modules，
+// 类名在构建时被哈希化成全局唯一，从机制上根治命名冲突（阶段三「留到阶段四」的那块）。
+// 里面的 display/transform/user-select 会被 postcss-loader 里的 autoprefixer 补前缀。
+.card {
+  padding: 16px;
+  display: flex;
+  transform: translateX(10px);
+  user-select: none;
+}
