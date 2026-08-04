@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>00-02 · 练习：内部样式表</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: system-ui, sans-serif; max-width: 720px; margin: 0 auto; padding: 40px 20px; color: #333; line-height: 1.8; }
+    a.back { color: #7c4dff; text-decoration: none; font-size: 14px; }
+    h1 { font-size: 24px; margin: 12px 0 16px; }
+
+    /* 方式 2 · 内部样式表：<style> 写在 <head> 里，
+       里面的规则对整个「本页面」生效。 */
+    .box {
+      color: #1565c0;
+      background: #e3f2fd;
+      padding: 12px;
+      border-radius: 8px;
+    }
+    .box + .box { margin-top: 10px; }
+
+    .tip { background: #fff3e0; border-left: 4px solid #ff9800; padding: 12px 16px; border-radius: 4px; margin: 24px 0; font-size: 14px; }
+    .nav { margin-top: 24px; font-size: 14px; display: flex; gap: 16px; }
+  </style>
+</head>
+<body>
+  <a class="back" href="index.html">← 返回总览</a>
+  <h1>内部样式表 — &lt;style&gt; 写在 head 里</h1>
+
+  <div class="box">第一个盒子（被本页 &lt;style&gt; 里的 .box 规则美化）</div>
+  <div class="box">第二个盒子（复用同一条 .box 规则）</div>
+
+  <!--
+    为什么叫"内部"？样式写在本页 HTML 内，随页面一起下载。
+    好处：单文件自包含，适合「一个页面的演示 / 练习」（本仓库所有章节都这样写）。
+    缺点：样式锁死在这一页，多个页面想共用同一套样式时，就得各自复制一份。
+    要解决复用问题 → 看下一项 03-external.html（外部样式表）。
+  -->
+  <div class="tip">
+    <strong>内部样式表的特点</strong><br/>
+    ✅ 单文件自包含，打开即用<br/>
+    ❌ 样式锁死在当前页面<br/>
+    ❌ 多页面无法共享同一套样式<br/>
+    本学习仓库的练习文件正是使用这种方式——方便独立打开查看效果。
+  </div>
+
+  <div class="nav">
+    <a href="01-inline.html">← 上一项：内联样式</a>
+    <a href="03-external.html">下一项：外部样式表 →</a>
+  </div>
+</body>
+</html>

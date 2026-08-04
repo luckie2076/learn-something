@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>00 · CSS 引入方式与基本语法</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: system-ui, sans-serif; max-width: 720px; margin: 0 auto; padding: 40px 20px; color: #333; line-height: 1.8; }
+    h1 { font-size: 28px; margin-bottom: 8px; }
+    .subtitle { color: #888; margin-bottom: 24px; }
+    h2 { font-size: 18px; margin: 40px 0 12px; padding-bottom: 6px; border-bottom: 2px solid #e0e0e0; }
+    ol { padding-left: 20px; }
+    li { margin: 6px 0; }
+    a { color: #7c4dff; text-decoration: none; font-weight: 500; }
+    a:hover { text-decoration: underline; }
+    .note { border-left: 4px solid #4caf50; padding: 12px 16px; background: #f0f9f0; border-radius: 4px; margin: 24px 0; }
+    .note code { background: #e8f5e9; padding: 2px 6px; border-radius: 3px; }
+    code { background: #f5f5f5; padding: 2px 6px; border-radius: 3px; font-size: 13px; }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; margin: 12px 0; }
+    th { background: #f5f5f5; padding: 10px 12px; text-align: left; }
+    td { padding: 10px 12px; border-bottom: 1px solid #eee; }
+  </style>
+</head>
+<body>
+  <h1>CSS 引入方式与基本语法</h1>
+  <p class="subtitle">CSS 有 3 种方式"贴"到 HTML 上，各自的适用场景不同。</p>
+
+  <!--
+    CSS 有 3 种"贴"到 HTML 上的方式。下面先用最直观的「内部样式表」，
+    但必须先讲清：为什么我们通常不这么用，而用更"麻烦"的外部文件。
+  -->
+
+  <style>
+    /* —— 规则结构：选择器 { 属性: 值; } ——
+       一条规则 = "选谁" + "改成什么样"。
+       分号分隔多条声明；最后一个声明后的分号可省，但写上更不易出错。 */
+    p {
+      color: #333;
+      line-height: 1.6;
+    }
+  </style>
+
+  <div class="note">
+    一句话记住规则：<code>选择器 { 属性: 值; }</code>。<br/>
+    你写的每一条 CSS，都是在回答两个问题——「选谁」和「改成什么样」。
+  </div>
+
+  <h2>三种引入方式对比</h2>
+  <table>
+    <tr><th>方式</th><th>写法</th><th>适用场景</th><th>推荐度</th></tr>
+    <tr>
+      <td>内联样式</td>
+      <td><code>&lt;p style="color:red"&gt;</code></td>
+      <td>临时调试、邮件 HTML</td>
+      <td>⚠️ 慎用</td>
+    </tr>
+    <tr>
+      <td>内部样式表</td>
+      <td><code>&lt;style&gt;</code> 写在 <code>&lt;head&gt;</code> 里</td>
+      <td>单页演示 / 学习练习</td>
+      <td>✅ 练习用</td>
+    </tr>
+    <tr>
+      <td>外部样式表</td>
+      <td><code>&lt;link rel="stylesheet" href="styles.css"&gt;</code></td>
+      <td>正式项目（多页共享）</td>
+      <td>⭐ 首选</td>
+    </tr>
+  </table>
+
+  <h2>为什么外部样式表最好？</h2>
+  <ul style="padding-left:20px;font-size:14px;">
+    <li><b>复用</b>：一个 <code>.css</code> 文件统一样式所有页面</li>
+    <li><b>缓存</b>：CSS 文件被浏览器缓存，后续页面加载更快</li>
+    <li><b>单一真相源</b>：改一处全站生效，符合「关注点分离」—— HTML 管"是什么"，CSS 管"长什么样"</li>
+  </ul>
+  <p style="font-size:13px;color:#888;margin-top:8px;">
+    后续章节为了「单文件可独立打开」，仍会沿用内部 <code>&lt;style&gt;</code>。但请记住：真实项目用 <code>&lt;link&gt;</code> 外部样式表。
+  </p>
+
+  <h2>📖 练习清单</h2>
+  <ol>
+    <li><a href="01-inline.html">内联样式</a> — 写在标签 style 属性中</li>
+    <li><a href="02-internal.html">内部样式表</a> — &lt;style&gt; 写在 &lt;head&gt; 里</li>
+    <li><a href="03-external.html">外部样式表</a> — &lt;link&gt; 引入独立 .css 文件</li>
+  </ol>
+</body>
+</html>
