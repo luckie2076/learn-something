@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>04 · flex-wrap + align-content</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: system-ui, sans-serif; max-width: 720px; margin: 0 auto; padding: 40px 20px; color: #333; line-height: 1.8; }
+    a.back { color: #7c4dff; text-decoration: none; font-size: 14px; }
+    h1 { font-size: 24px; margin: 12px 0 8px; }
+    .desc { color: #888; margin-bottom: 20px; }
+
+    .section { margin-bottom: 36px; }
+    .section h2 { font-size: 16px; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+    .section h2 code { background: #eee; padding: 2px 8px; border-radius: 3px; font-size: 14px; color: #7c4dff; }
+
+    .demo { border: 2px dashed #ccc; border-radius: 8px; padding: 12px; display: flex; gap: 8px; width: 360px; }
+    .item { background: #b39ddb; color: #fff; text-align: center; padding: 12px 20px; border-radius: 6px; font-weight: 600; min-width: 100px; }
+  </style>
+</head>
+<body>
+  <a class="back" href="index.html">← 返回目录</a>
+  <h1>flex-wrap + align-content — 换行与多行对齐</h1>
+  <p class="desc">当子项总宽度超出容器时，<code>flex-wrap</code> 控制是否换行；<code>align-content</code> 控制多行在交叉轴上的分布。</p>
+
+  <!-- nowrap -->
+  <div class="section">
+    <h2><code>nowrap</code> — 不换行（默认），子项会被压缩</h2>
+    <div class="demo" style="flex-wrap:nowrap;">
+      <div class="item">A</div><div class="item">B</div><div class="item">C</div><div class="item">D</div><div class="item">E</div>
+    </div>
+  </div>
+
+  <!-- wrap -->
+  <div class="section">
+    <h2><code>wrap</code> — 换行，超出则折行</h2>
+    <div class="demo" style="flex-wrap:wrap;">
+      <div class="item">A</div><div class="item">B</div><div class="item">C</div><div class="item">D</div><div class="item">E</div>
+    </div>
+  </div>
+
+  <!-- wrap-reverse -->
+  <div class="section">
+    <h2><code>wrap-reverse</code> — 反向换行（从下往上排）</h2>
+    <div class="demo" style="flex-wrap:wrap-reverse; ">
+      <div class="item">A</div><div class="item">B</div><div class="item">C</div><div class="item">D</div><div class="item">E</div>
+    </div>
+  </div>
+
+  <!-- align-content 系列 -->
+  <div class="section">
+    <h2><code>align-content</code> — 多行在交叉轴上的分布</h2>
+    <p style="font-size:13px;color:#888;margin-bottom:12px;">前提：<code>flex-wrap: wrap</code> 且有多行。单行时无效。</p>
+
+    <div style="margin-bottom:16px;">
+      <h2 style="border:none;padding:0;"><code>align-content: flex-start</code></h2>
+      <div class="demo" style="flex-wrap:wrap; align-content:flex-start; height:200px;">
+        <div class="item">A</div><div class="item">B</div><div class="item">C</div><div class="item">D</div><div class="item">E</div><div class="item">F</div><div class="item">G</div>
+      </div>
+    </div>
+
+    <div style="margin-bottom:16px;">
+      <h2 style="border:none;padding:0;"><code>align-content: center</code></h2>
+      <div class="demo" style="flex-wrap:wrap; align-content:center; height:200px;">
+        <div class="item">A</div><div class="item">B</div><div class="item">C</div><div class="item">D</div><div class="item">E</div><div class="item">F</div><div class="item">G</div>
+      </div>
+    </div>
+
+    <div style="margin-bottom:16px;">
+      <h2 style="border:none;padding:0;"><code>align-content: space-between</code></h2>
+      <div class="demo" style="flex-wrap:wrap; align-content:space-between; height:200px;">
+        <div class="item">A</div><div class="item">B</div><div class="item">C</div><div class="item">D</div><div class="item">E</div><div class="item">F</div><div class="item">G</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

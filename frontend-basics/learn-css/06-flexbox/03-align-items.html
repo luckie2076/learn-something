@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>03 · align-items</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: system-ui, sans-serif; max-width: 720px; margin: 0 auto; padding: 40px 20px; color: #333; line-height: 1.8; }
+    a.back { color: #7c4dff; text-decoration: none; font-size: 14px; }
+    h1 { font-size: 24px; margin: 12px 0 8px; }
+    .desc { color: #888; margin-bottom: 20px; }
+
+    .section { margin-bottom: 36px; }
+    .section h2 { font-size: 16px; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+    .section h2 code { background: #eee; padding: 2px 8px; border-radius: 3px; font-size: 14px; color: #7c4dff; }
+
+    .demo { border: 2px dashed #ccc; border-radius: 8px; padding: 12px; display: flex; gap: 8px; min-height: 120px; }
+    .item { background: #b39ddb; color: #fff; text-align: center; padding: 12px 20px; border-radius: 6px; font-weight: 600; min-width: 60px; }
+    .item.small { padding: 4px 20px; font-size: 12px; }
+    .item.large { padding: 28px 20px; font-size: 18px; }
+  </style>
+</head>
+<body>
+  <a class="back" href="index.html">← 返回目录</a>
+  <h1>align-items — 交叉轴对齐</h1>
+  <p class="desc">控制子项在<b>交叉轴方向</b>（默认垂直）上的对齐方式。</p>
+
+  <div class="section">
+    <h2><code>stretch</code> — 拉伸填满（默认）</h2>
+    <div class="demo" style="align-items:stretch;">
+      <div class="item">A</div><div class="item">B</div><div class="item">C</div>
+    </div>
+    <p style="font-size:13px;color:#888;margin-top:6px;">子项未设高度时自动拉伸到容器高度</p>
+  </div>
+
+  <div class="section">
+    <h2><code>flex-start</code> — 顶部对齐</h2>
+    <div class="demo" style="align-items:flex-start;">
+      <div class="item">A</div><div class="item large">B（高）</div><div class="item small">C（矮）</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><code>center</code> — 垂直居中</h2>
+    <div class="demo" style="align-items:center;">
+      <div class="item">A</div><div class="item large">B（高）</div><div class="item small">C（矮）</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><code>flex-end</code> — 底部对齐</h2>
+    <div class="demo" style="align-items:flex-end;">
+      <div class="item">A</div><div class="item large">B（高）</div><div class="item small">C（矮）</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><code>baseline</code> — 文字基线对齐</h2>
+    <div class="demo" style="align-items:baseline;">
+      <div class="item" style="font-size:12px;">小字 A</div>
+      <div class="item" style="font-size:24px;">大字 B</div>
+      <div class="item" style="font-size:16px;">中字 C</div>
+    </div>
+    <p style="font-size:13px;color:#888;margin-top:6px;">不同字号时文字基线对齐，常用于表单 label 与输入框对齐</p>
+  </div>
+</body>
+</html>

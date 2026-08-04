@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>02 · justify-content</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: system-ui, sans-serif; max-width: 720px; margin: 0 auto; padding: 40px 20px; color: #333; line-height: 1.8; }
+    a.back { color: #7c4dff; text-decoration: none; font-size: 14px; }
+    h1 { font-size: 24px; margin: 12px 0 8px; }
+    .desc { color: #888; margin-bottom: 20px; }
+
+    .section { margin-bottom: 36px; }
+    .section h2 { font-size: 16px; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+    .section h2 code { background: #eee; padding: 2px 8px; border-radius: 3px; font-size: 14px; color: #7c4dff; }
+
+    .demo { border: 2px dashed #ccc; border-radius: 8px; padding: 16px; display: flex; gap: 8px; }
+    .item { background: #b39ddb; color: #fff; text-align: center; padding: 12px 20px; border-radius: 6px; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <a class="back" href="index.html">← 返回目录</a>
+  <h1>justify-content — 主轴对齐</h1>
+  <p class="desc">控制子项在<b>主轴方向</b>上的分布方式。默认主轴为水平方向。</p>
+
+  <div class="section">
+    <h2><code>flex-start</code> — 靠左对齐（默认）</h2>
+    <div class="demo" style="justify-content:flex-start;">
+      <div class="item">A</div><div class="item">B</div><div class="item">C</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><code>center</code> — 居中</h2>
+    <div class="demo" style="justify-content:center;">
+      <div class="item">A</div><div class="item">B</div><div class="item">C</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><code>flex-end</code> — 靠右对齐</h2>
+    <div class="demo" style="justify-content:flex-end;">
+      <div class="item">A</div><div class="item">B</div><div class="item">C</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><code>space-between</code> — 两端对齐，中间均分</h2>
+    <div class="demo" style="justify-content:space-between;">
+      <div class="item">A</div><div class="item">B</div><div class="item">C</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><code>space-around</code> — 每个子项两侧间距相等（半倍间距在两端）</h2>
+    <div class="demo" style="justify-content:space-around;">
+      <div class="item">A</div><div class="item">B</div><div class="item">C</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><code>space-evenly</code> — 所有间距完全相等（含两端）</h2>
+    <div class="demo" style="justify-content:space-evenly;">
+      <div class="item">A</div><div class="item">B</div><div class="item">C</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>space-between / space-around / space-evenly 对比</h2>
+    <p>
+      <b>space-between</b>：首尾贴边，中间均分。<br/>
+      <b>space-around</b>：每个子项左右间距相等 → 首尾间距是中间的一半。<br/>
+      <b>space-evenly</b>：所有间隙（含首尾）完全相等。
+    </p>
+  </div>
+</body>
+</html>

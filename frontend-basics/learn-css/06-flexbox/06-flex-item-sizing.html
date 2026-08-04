@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>06 · flex-grow / shrink / basis</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: system-ui, sans-serif; max-width: 720px; margin: 0 auto; padding: 40px 20px; color: #333; line-height: 1.8; }
+    a.back { color: #7c4dff; text-decoration: none; font-size: 14px; }
+    h1 { font-size: 24px; margin: 12px 0 8px; }
+    .desc { color: #888; margin-bottom: 20px; }
+
+    .section { margin-bottom: 36px; }
+    .section h2 { font-size: 16px; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+    .section h2 code { background: #eee; padding: 2px 8px; border-radius: 3px; font-size: 14px; color: #7c4dff; }
+
+    .demo { border: 2px dashed #ccc; border-radius: 8px; padding: 12px; display: flex; gap: 8px; width: 100%; }
+    .item { background: #b39ddb; color: #fff; text-align: center; padding: 12px 16px; border-radius: 6px; font-weight: 600; font-size: 14px; }
+  </style>
+</head>
+<body>
+  <a class="back" href="index.html">← 返回目录</a>
+  <h1>flex-grow / flex-shrink / flex-basis — 弹性伸缩</h1>
+  <p class="desc">三个属性共同控制子项的弹性行为，常用 <code>flex</code> 缩写。</p>
+  <p style="font-size:13px;color:#888;margin-bottom:24px;"><code>flex: &lt;grow&gt; &lt;shrink&gt; &lt;basis&gt;</code> ｜ 默认值 <code>flex: 0 1 auto</code></p>
+
+  <!-- flex-grow -->
+  <div class="section">
+    <h2><code>flex-grow</code> — 放大比例</h2>
+    <p style="font-size:13px;color:#888;margin-bottom:8px;">当容器有剩余空间时，子项按比例分配。默认为 0（不放大）。</p>
+    <div class="demo">
+      <div class="item" style="flex-grow:0;">0</div>
+      <div class="item" style="flex-grow:1;">1</div>
+      <div class="item" style="flex-grow:2;">2</div>
+      <div class="item" style="flex-grow:0;">0</div>
+    </div>
+  </div>
+
+  <!-- flex-shrink -->
+  <div class="section">
+    <h2><code>flex-shrink</code> — 缩小比例</h2>
+    <p style="font-size:13px;color:#888;margin-bottom:8px;">当容器空间不足时，子项按比例收缩。默认为 1。设为 0 则不收缩。</p>
+    <div class="demo" style="width:480px;">
+      <div class="item" style="flex-shrink:1; min-width:140px;">shrink:1</div>
+      <div class="item" style="flex-shrink:0; min-width:140px;">shrink:0</div>
+      <div class="item" style="flex-shrink:2; min-width:140px;">shrink:2</div>
+    </div>
+    <p style="font-size:13px;color:#888;margin-top:6px;">容器宽度 480px，三个子项各 140px 基础宽度 → 超出 420px + 间距。<code>shrink:0</code> 的项不收缩，其他按比例收缩。</p>
+  </div>
+
+  <!-- flex-basis -->
+  <div class="section">
+    <h2><code>flex-basis</code> — 基础尺寸</h2>
+    <p style="font-size:13px;color:#888;margin-bottom:8px;">定义子项在分配剩余空间前的初始尺寸。优先级高于 width。</p>
+    <div class="demo">
+      <div class="item" style="flex-basis:200px;">basis: 200px</div>
+      <div class="item" style="flex-grow:1;">flex:1 (auto)</div>
+      <div class="item" style="flex: 0 1 300px;">basis:300, no grow</div>
+    </div>
+  </div>
+
+  <!-- 常用缩写 -->
+  <div class="section">
+    <h2>常用 <code>flex</code> 缩写速查</h2>
+    <table style="width:100%;border-collapse:collapse;font-size:14px;">
+      <tr style="background:#f5f5f5;"><th style="padding:8px;text-align:left;">缩写</th><th style="padding:8px;text-align:left;">等价</th><th style="padding:8px;text-align:left;">含义</th></tr>
+      <tr><td style="padding:8px;border-bottom:1px solid #eee;"><code>flex: 1</code></td><td style="padding:8px;border-bottom:1px solid #eee;"><code>flex: 1 1 0%</code></td><td style="padding:8px;border-bottom:1px solid #eee;">可伸缩，从 0 开始均分</td></tr>
+      <tr><td style="padding:8px;border-bottom:1px solid #eee;"><code>flex: auto</code></td><td style="padding:8px;border-bottom:1px solid #eee;"><code>flex: 1 1 auto</code></td><td style="padding:8px;border-bottom:1px solid #eee;">可伸缩，保留内容尺寸</td></tr>
+      <tr><td style="padding:8px;border-bottom:1px solid #eee;"><code>flex: none</code></td><td style="padding:8px;border-bottom:1px solid #eee;"><code>flex: 0 0 auto</code></td><td style="padding:8px;border-bottom:1px solid #eee;">固定尺寸，不伸缩</td></tr>
+      <tr><td style="padding:8px;border-bottom:1px solid #eee;"><code>flex: initial</code></td><td style="padding:8px;border-bottom:1px solid #eee;"><code>flex: 0 1 auto</code></td><td style="padding:8px;border-bottom:1px solid #eee;">按内容尺寸，只缩不放</td></tr>
+    </table>
+  </div>
+</body>
+</html>

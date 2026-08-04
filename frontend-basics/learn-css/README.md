@@ -8,13 +8,13 @@ CSS 渐进式学习练习。每个文件聚焦一个主题，代码刻意保持�
 
 | 文件 | 主题 | 核心「为什么」 |
 | ---- | ---- | ------------ |
-| [`00-00-basics.html`](00-00-basics.html) · [`00-01-inline.html`](00-01-inline.html) · [`00-02-internal.html`](00-02-internal.html) · [`00-03-external.html`](00-03-external.html) | 引入与基本语法 | 总览 00-00，再按序练习 00-01~00-03：内联 `style` / 内部 `<style>` / 外部 `<link>`（配 [`00-03-styles.css`](00-03-styles.css)）。为什么正式项目用外部样式表（复用、缓存、关注点分离）？规则结构：`选择器 { 属性: 值 }`。 |
+| [`00-css-intro/`](00-css-intro/) | 引入与基本语法 | [总览](00-css-intro/index.html) → [内联](00-css-intro/01-inline.html) → [内部](00-css-intro/02-internal.html) → [外部](00-css-intro/03-external.html)。为什么正式项目用外部样式表（复用、缓存、关注点分离）？规则结构：`选择器 { 属性: 值 }`。 |
 | [`01-selectors.html`](01-selectors.html) | 选择器 | 为什么需要选择器？它是「给元素贴地址」。基础（元素/类/ID/通配符）、组合（后代/子/相邻）、分组。为什么类比 ID 更常用（可复用、可叠加）。 |
 | [`02-box-model.html`](02-box-model.html) | 盒模型 ★核心 | 为什么 CSS 把每个元素当成「盒子」？content/padding/border/margin 四层。为什么 `box-sizing: border-box` 几乎是必选项（避免尺寸计算陷阱）。为什么 margin 会「塌陷」。 |
 | [`03-units.html`](03-units.html) | 单位与尺寸 | 为什么不能用死 `px` 定全局字号（无障碍/缩放）？`em` 相对父、`rem` 相对根——为什么 `rem` 更适合统一缩放。`vw/vh` 与视口；`%` 相对谁。 |
 | [`04-display-flow.html`](04-display-flow.html) | 显示模式与文档流 | 为什么元素默认有 `block`/`inline` 之分（是否占满行、能否设宽高）？`inline-block` 的缝隙问题为何出现。**普通文档流（normal flow）是什么**——后续所有布局的前提。 |
 | [`05-position.html`](05-position.html) | 定位 position | 为什么需要 `position`（脱离/不脱离文档流）？`static/relative/absolute/fixed/sticky` 各自「相对谁」。为什么 `absolute` 要找「最近的定位祖先」（包含块 containing block）。 |
-| [`06-flexbox.html`](06-flexbox.html) | Flexbox 一维布局 | 为什么 Flex 出现（解决 `float` 清浮动的痛苦）？主轴/交叉轴；`justify-content`/`align-items`。为什么 `flex: 1` 能等分空间。 |
+| [`06-flexbox/`](06-flexbox/) | Flexbox 一维布局 | [目录](06-flexbox/index.html)：容器属性（方向/对齐/换行/间距）→ 子项属性（伸缩/排序）→ 实战布局（居中/导航/圣杯/卡片网格/粘性页脚）。 |
 | [`07-grid.html`](07-grid.html) | Grid 二维布局 | 为什么需要 Grid（行+列同时控制）？与 Flex 的取舍：一维用 Flex，二维用 Grid。`fr` 单位、`grid-template`、`gap`。 |
 | [`08-cascade.html`](08-cascade.html) | 层叠、继承与优先级 ★难点 | 为什么多条规则作用同一元素会「冲突」？浏览器按「来源 → 特异性 → 顺序」解决。特异性怎么算（ID > 类 > 元素）。继承是什么；为什么有些属性不继承。`!important` 为何是「最后手段」。 |
 | [`09-typography.html`](09-typography.html) | 文本与排版 | 为什么 `line-height` 用无单位值更稳？`font` 简写顺序陷阱；字体系列回退（fallback）为什么必要。 |

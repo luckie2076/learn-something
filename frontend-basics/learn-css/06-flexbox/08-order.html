@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>08 · order</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: system-ui, sans-serif; max-width: 720px; margin: 0 auto; padding: 40px 20px; color: #333; line-height: 1.8; }
+    a.back { color: #7c4dff; text-decoration: none; font-size: 14px; }
+    h1 { font-size: 24px; margin: 12px 0 8px; }
+    .desc { color: #888; margin-bottom: 20px; }
+
+    .section { margin-bottom: 36px; }
+    .section h2 { font-size: 16px; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+    .section h2 code { background: #eee; padding: 2px 8px; border-radius: 3px; font-size: 14px; color: #7c4dff; }
+
+    .demo { border: 2px dashed #ccc; border-radius: 8px; padding: 12px; display: flex; gap: 8px; }
+    .item { background: #b39ddb; color: #fff; text-align: center; padding: 12px 20px; border-radius: 6px; font-weight: 600; min-width: 60px; }
+  </style>
+</head>
+<body>
+  <a class="back" href="index.html">← 返回目录</a>
+  <h1>order — 子项排序</h1>
+  <p class="desc"><code>order</code> 控制子项的排列顺序，所有子项默认为 0。数值越小越靠前（主轴方向）。</p>
+  <p style="font-size:13px;color:#888;margin-bottom:24px;"><b>注意：</b>order 只改变视觉顺序，不改变 DOM 结构。对无障碍和键盘导航有影响，谨慎使用。</p>
+
+  <div class="section">
+    <h2>默认顺序（DOM 顺序）</h2>
+    <div class="demo">
+      <div class="item">A (0)</div><div class="item">B (0)</div><div class="item">C (0)</div><div class="item">D (0)</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>调整顺序：C 排第一，B 排最后</h2>
+    <div class="demo">
+      <div class="item" style="order:2;">A (2)</div>
+      <div class="item" style="order:3;">B (3)</div>
+      <div class="item" style="order:0;">C (0)</div>
+      <div class="item" style="order:1;">D (1)</div>
+    </div>
+    <p style="font-size:13px;color:#888;margin-top:6px;">视觉顺序：C → D → A → B，DOM 顺序不变</p>
+  </div>
+
+  <div class="section">
+    <h2>实际场景：内容优先的响应式布局</h2>
+    <p style="font-size:13px;color:#888;margin-bottom:8px;">桌面端侧边栏在左，移动端侧边栏在内容下方（通过媒体查询 + order 实现）</p>
+    <div class="demo" style="flex-direction:column; gap:12px; max-width:400px;">
+      <div class="item" style="order:2; background:#ef9a9a;">📌 侧边栏（DOM 在后，但 order 让它在桌面端排前面）</div>
+      <div class="item" style="order:1; background:#81c784;">📄 主内容（DOM 在前，利于 SEO）</div>
+    </div>
+    <p style="font-size:13px;color:#888;margin-top:6px;">
+      桌面端：<code>order: 2</code> 侧边栏 + <code>order: 1</code> 内容 → 侧边栏在左<br/>
+      移动端媒体查询覆盖：<code>order: 1</code> 侧边栏 + <code>order: 2</code> 内容 → 内容在上
+    </p>
+  </div>
+</body>
+</html>

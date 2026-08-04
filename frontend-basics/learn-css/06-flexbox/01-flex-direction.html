@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>01 · flex-direction</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: system-ui, sans-serif; max-width: 720px; margin: 0 auto; padding: 40px 20px; color: #333; line-height: 1.8; }
+    a.back { color: #7c4dff; text-decoration: none; font-size: 14px; }
+    h1 { font-size: 24px; margin: 12px 0 8px; }
+    .desc { color: #888; margin-bottom: 20px; }
+
+    .section { margin-bottom: 40px; }
+    .section h2 { font-size: 16px; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+    .section h2 code { background: #eee; padding: 2px 8px; border-radius: 3px; font-size: 14px; color: #7c4dff; }
+
+    .demo { border: 2px dashed #ccc; border-radius: 8px; padding: 16px; min-height: 100px; }
+    .item { background: #b39ddb; color: #fff; text-align: center; padding: 12px 20px; border-radius: 6px; font-weight: 600; min-width: 50px; }
+  </style>
+</head>
+<body>
+  <a class="back" href="index.html">← 返回目录</a>
+  <h1>flex-direction — 主轴方向</h1>
+  <p class="desc"><code>flex-direction</code> 决定子项沿哪条轴排列，是 Flex 布局的第一属性。</p>
+
+  <!-- row (默认) -->
+  <div class="section">
+    <h2><code>row</code> — 水平从左到右（默认）</h2>
+    <div class="demo" style="display:flex; flex-direction:row; gap:8px;">
+      <div class="item">1</div>
+      <div class="item">2</div>
+      <div class="item">3</div>
+    </div>
+  </div>
+
+  <!-- row-reverse -->
+  <div class="section">
+    <h2><code>row-reverse</code> — 水平从右到左</h2>
+    <div class="demo" style="display:flex; flex-direction:row-reverse; gap:8px;">
+      <div class="item">1</div>
+      <div class="item">2</div>
+      <div class="item">3</div>
+    </div>
+  </div>
+
+  <!-- column -->
+  <div class="section">
+    <h2><code>column</code> — 垂直从上到下</h2>
+    <div class="demo" style="display:flex; flex-direction:column; gap:8px;">
+      <div class="item">1</div>
+      <div class="item">2</div>
+      <div class="item">3</div>
+    </div>
+  </div>
+
+  <!-- column-reverse -->
+  <div class="section">
+    <h2><code>column-reverse</code> — 垂直从下到上</h2>
+    <div class="demo" style="display:flex; flex-direction:column-reverse; gap:8px;">
+      <div class="item">1</div>
+      <div class="item">2</div>
+      <div class="item">3</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>关键理解</h2>
+    <p>主轴方向一变，<code>justify-content</code>（主轴对齐）和 <code>align-items</code>（交叉轴对齐）的角色也会互换。row 时主轴是水平，column 时主轴是垂直。</p>
+  </div>
+</body>
+</html>

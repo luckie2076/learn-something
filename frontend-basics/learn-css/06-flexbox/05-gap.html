@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>05 · gap</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: system-ui, sans-serif; max-width: 720px; margin: 0 auto; padding: 40px 20px; color: #333; line-height: 1.8; }
+    a.back { color: #7c4dff; text-decoration: none; font-size: 14px; }
+    h1 { font-size: 24px; margin: 12px 0 8px; }
+    .desc { color: #888; margin-bottom: 20px; }
+
+    .section { margin-bottom: 36px; }
+    .section h2 { font-size: 16px; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+    .section h2 code { background: #eee; padding: 2px 8px; border-radius: 3px; font-size: 14px; color: #7c4dff; }
+
+    .demo { border: 2px dashed #ccc; border-radius: 8px; padding: 16px; display: flex; flex-wrap: wrap; }
+    .item { background: #b39ddb; color: #fff; text-align: center; padding: 12px 20px; border-radius: 6px; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <a class="back" href="index.html">← 返回目录</a>
+  <h1>gap — 子项间距</h1>
+  <p class="desc"><code>gap</code> 是设置子项之间间距的现代方式，替代了旧式的 <code>margin</code> hack。</p>
+  <p style="font-size:13px;color:#888;margin-bottom:24px;"><b>注意：</b>gap 只作用于子项<em>之间</em>，不会在容器边缘产生额外间距。这与 margin 不同。</p>
+
+  <div class="section">
+    <h2>无 gap（紧贴）</h2>
+    <div class="demo">
+      <div class="item">A</div><div class="item">B</div><div class="item">C</div><div class="item">D</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><code>gap: 8px</code></h2>
+    <div class="demo" style="gap:8px;">
+      <div class="item">A</div><div class="item">B</div><div class="item">C</div><div class="item">D</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><code>gap: 24px</code></h2>
+    <div class="demo" style="gap:24px;">
+      <div class="item">A</div><div class="item">B</div><div class="item">C</div><div class="item">D</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><code>row-gap: 16px; column-gap: 32px</code> — 行列独立间距</h2>
+    <div class="demo" style="flex-wrap:wrap; row-gap:16px; column-gap:32px;">
+      <div class="item">A1</div><div class="item">A2</div><div class="item">A3</div>
+      <div class="item">B1</div><div class="item">B2</div><div class="item">B3</div>
+    </div>
+    <p style="font-size:13px;color:#888;margin-top:6px;">多行换行时，行间距和列间距可以分别控制</p>
+  </div>
+
+  <div class="section">
+    <h2>gap vs margin 对比</h2>
+    <p style="font-size:13px;color:#888;">
+      <b>gap</b>：间距仅在子项之间，容器边缘无多余间隙。代码简洁。<br/>
+      <b>margin</b>：每个子项都要设 margin，且首尾子项会在容器边缘产生间距，需要额外处理（如 :first-child / :last-child 或负 margin）。
+    </p>
+  </div>
+</body>
+</html>
