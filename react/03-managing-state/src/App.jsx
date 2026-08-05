@@ -5,6 +5,7 @@ import S4 from './04-PreservingAndResettingState.jsx'
 import S5 from './05-Reducer.jsx'
 import S6 from './06-Context.jsx'
 import S7 from './07-ScalingUp.jsx'
+import S8 from './08-CompoundComponents.jsx'
 
 const sections = [
   [1, '用 State 响应输入', S1],
@@ -14,6 +15,7 @@ const sections = [
   [5, '迁移状态逻辑至 Reducer', S5],
   [6, '使用 Context 深层传递参数', S6],
   [7, '使用 Reducer 和 Context 拓展你的应用', S7],
+  [8, '复合组件 — Context 的设计模式应用', S8],
 ]
 
 export default function App() {

@@ -58,3 +58,19 @@ props 逐层透传很烦（"prop drilling"）。`createContext` + `useContext` �
 
 ## 7. 使用 Reducer 和 Context 拓展你的应用
 把第 5、6 节组合：用 reducer 管理复杂状态，用 context 把「状态 + 派发」广播下去。任意深度的子组件都能**零 props 透传**地读写——应用规模变大也不乱。这是中大型应用的主流状态组织方式。
+
+## 8. 复合组件 — Context 的设计模式应用
+**复合组件模式**（Compound Components）是 Context 的经典应用：父组件持有状态并通过 Context 隐式广播，子组件自动接收。调用方只需**声明式地组合标签**，无需手动将 props 一层层往下传。
+
+```jsx
+<Tabs>
+  <Tabs.TabList>
+    <Tabs.Tab index={0}>标签一</Tabs.Tab>
+  </Tabs.TabList>
+  <Tabs.TabPanel index={0}>内容</Tabs.TabPanel>
+</Tabs>
+```
+
+**核心机制**：`Tabs` 内部用 `createContext` + `Provider` 共享 `{ activeIndex, setActiveIndex }`，`Tab` 和 `TabPanel` 通过 `useContext` 读取，决定高亮和显隐。库级组件（如 Radix UI、Headless UI）普遍使用此模式。
+
+**与第 6、7 节的关系**：第 6 节讲技术（Context 怎么用），第 7 节讲组合（Reducer + Context），本节讲**设计模式**——如何用 Context 构建出优雅的 API。
