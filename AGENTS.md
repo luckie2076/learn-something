@@ -11,4 +11,4 @@
 # 环境 (优先)
 * pnpm
 * vite
-* typescript + tailwindcss
+* react + typescript + tailwindcss
