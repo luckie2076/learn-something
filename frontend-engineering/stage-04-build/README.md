@@ -26,9 +26,6 @@
 **Vite —— 现代开发体验型（本阶段已落地）**
 开发态不打包、直接用浏览器原生 ESM（秒开），生产态才用 Rolldown 打包。详见 [`vite/`](./vite/)。
 
-**Webpack —— 经典全能型（本阶段已落地）**
-四件套 `entry / loader / plugin / output` 显式编排，loader 把各类资源转成 JS 模块、plugin 管打包全流程。可运行示例见 [`webpack/`](./webpack/)。
-
 > 两者不是「选边」关系：Webpack 胜在生态成熟、配置精细（且概念通用，学一次受益多）；Vite 胜在开发体验。**把 [`vite/`](./vite/) 和 [`webpack/`](./webpack/) 并排看**，能清楚体会「同一个需求，两种构建哲学」。
 
 ## 3. 本阶段包含哪些构建工具

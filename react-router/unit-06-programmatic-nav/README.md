@@ -1,5 +1,7 @@
 # 单元 06 · 编程式导航
 
+上一单元：[查询参数](../unit-05-search-params/README.md) | 下一单元：[路由保护](../unit-07-route-guard/README.md)
+
 ## 运行
 
 ```bash

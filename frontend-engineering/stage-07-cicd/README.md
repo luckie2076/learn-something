@@ -41,3 +41,6 @@ COPY dist /usr/share/nginx/html
 
 ## 动手建议
 给阶段四的 Vite 项目加一个 GitHub Actions，push 时自动 `build` 并把 `dist` 部署到 GitHub Pages。
+
+## 下一步
+完成后进入 [阶段八：进阶架构与性能优化](../stage-08-advanced/README.md)。

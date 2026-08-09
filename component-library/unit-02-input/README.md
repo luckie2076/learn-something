@@ -1,59 +1,85 @@
-# Unit 02 · Input 组件
+# Unit 02 · Input 输入框
 
 ## 核心 CSS 知识点
 
-### 1. :focus 伪类
-
-TailwindCSS 通过 `focus-visible:` 前缀实现聚焦态：
-
-```css
-focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2
-```
-
-等价于：
-```css
-input:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 2px white, 0 0 0 4px #a1a1aa;
-}
-```
-
-`focus-visible` 与 `focus` 的区别：
-- `:focus` — 任何聚焦方式都触发（包括鼠标点击）
-- `:focus-visible` — 仅在键盘导航时显示（更符合无障碍设计）
-
-### 2. :disabled 伪类
-
-```css
-disabled:cursor-not-allowed disabled:opacity-50
-```
-
-### 3. Flex 插槽布局
-
-Input 的 prefix / suffix icon 通过 **绝对定位** 实现：
+### 1. 受控组件 — React 中管理表单值
 
 ```jsx
-<div className="relative flex items-center">
-  {/* prefix icon 绝对定位在左侧 */}
-  <span className="pointer-events-none absolute left-3 ...">🔍</span>
-  {/* input 左边加 padding 给 icon 腾位置 */}
-  <input className="pl-9 ..." />
+const [value, setValue] = useState("")
+<input value={value} onChange={e => setValue(e.target.value)} />
+```
+
+React 的单向数据流中，表单元素的值由 state 控制，`onChange` 更新 state 完成闭环。非受控可以用 `defaultValue`。
+
+### 2. forwardRef — 暴露内部 DOM 给父组件
+
+```jsx
+const Input = forwardRef((props, ref) => {
+  return <input ref={ref} {...props} />
+})
+// 父组件可以用 ref.focus()、ref.select() 等
+```
+
+`ref` 是 React 不通过 props 传递的特殊属性，必须用 `forwardRef` 包装才能透传。
+
+### 3. Flex 插槽布局 — icon + input + icon
+
+```
+┌─────┬──────────────────┬─────┐
+│  🔍  │   <input />      │  ✕  │
+│ icon │   核心输入区       │ icon │
+└─────┴──────────────────┴─────┘
+  pointer-events-none              pointer-events-none
+```
+
+```jsx
+<div className="flex items-center border rounded-lg">
+  <span className="pl-3 pointer-events-none">🔍</span>
+  <input className="flex-1 px-3 py-2 outline-none" />
+  <span className="pr-3 pointer-events-none">✕</span>
 </div>
 ```
 
-关键 CSS 技巧：
-- 外层 `relative` — 建立定位上下文
-- icon 用 `absolute` — 脱离文档流覆盖在 input 上方
-- `pointer-events-none` — icon 不拦截点击，点击穿透到 input
-- input 用 `pl-9` / `pr-9` — 预留 icon 的空间，防止文字被遮挡
+- `flex items-center`：标签和 input 垂直居中
+- `flex-1`：input 填满剩余空间
+- `pointer-events-none`：图标不拦截点击（点图标等价于点 input）
+- 动态类名 `prefix ? "pl-9" : "px-3"`：有图标时加大左侧 padding
 
-### 4. React forwardRef
+### 4. `:focus` vs `:focus-visible` — 聚焦样式选择
 
-Input 使用 `forwardRef` 将 ref 转发给原生 `<input>`，便于父组件获取焦点或取值：
+| 伪类 | 触发方式 | 适用场景 |
+|------|---------|---------|
+| `:focus` | 所有聚焦方式（鼠标、键盘、JS） | 确保聚焦状态始终可见 |
+| `:focus-visible` | 仅键盘聚焦（Tab 键） | 不想让鼠标点击出现聚焦环 |
 
-```js
-const Input = forwardRef(({ ... }, ref) => <input ref={ref} ... />)
+```css
+/* 键盘聚焦时出现蓝色环，鼠标点击不出现 */
+input:focus-visible { outline: 2px solid #3b82f6; outline-offset: 2px; }
 ```
+
+**推荐用法**：Input 用 `:focus-visible` 配合 `ring`，既保持可访问性又不影响美观。
+
+### 5. `:disabled` — 禁用态处理
+
+```css
+input:disabled {
+  opacity: 0.5;           /* 视觉变灰 */
+  cursor: not-allowed;    /* 光标变禁止符 */
+}
+<input disabled className="opacity-50 cursor-not-allowed" />
+```
+
+### 6. appearance: none — 重置原生样式
+
+```css
+/* 消除浏览器默认的表单样式，为自定义样式铺路 */
+input {
+  appearance: none;
+  -webkit-appearance: none;
+}
+```
+
+浏览器会给 `<input>` 添加默认样式（边框、背景、聚焦环），`appearance: none` 全部清除，方便完全自定义。
 
 ---
 

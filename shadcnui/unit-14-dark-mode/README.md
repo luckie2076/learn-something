@@ -1,5 +1,7 @@
 # 单元 14 · 暗色模式（next-themes）
 
+[上一单元：设计令牌原理](../unit-13-design-tokens/README.md) | [下一单元：品牌主题定制](../unit-15-brand-theme/README.md)
+
 > 本单元在单元 13「设计令牌」的基础上，解决**如何切换并持久化明暗主题**。
 > 核心结论：明暗视觉由令牌决定，next-themes 只负责「何时给 `<html>` 加 `.dark` 类」。
 

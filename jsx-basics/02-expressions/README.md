@@ -1,7 +1,9 @@
 # 第二章 · 表达式与属性
 
 > 教学导向：每节先讲「为什么这样设计」，再展示最小可运行代码。
-> 运行方式：在项目根目录执行 `pnpm install`，然后 `cd 02-expressions && pnpm dev`。
+> 运行方式：`cd 02-expressions && pnpm install && pnpm dev`。
+>
+> 上一章：[JSX 基本语法](../01-jsx-syntax/README.md) | 下一章：[元素与子元素](../03-elements-and-children/README.md)
 
 ---
 

@@ -1,5 +1,7 @@
 # 单元 07 · 路由保护
 
+上一单元：[编程式导航](../unit-06-programmatic-nav/README.md) | 下一单元：[错误处理](../unit-08-error-handling/README.md)
+
 ## 运行
 
 ```bash

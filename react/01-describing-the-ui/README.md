@@ -1,8 +1,11 @@
 # 第一章 · 描述 UI（Describing the UI）
 
+> 对应官方文档：[Describing the UI](https://react.dev/learn/describing-the-ui)
 > 教学导向：每节都先讲「为什么这样设计」，再看最小可运行代码。
 > 运行方式：`pnpm install && pnpm dev`，打开终端给出的本地地址。
 > 代码全部在 `src/App.jsx` 中按小节聚合展示，每个小节一个独立文件（如 `src/01-YourFirstComponent.jsx`）。
+>
+> 上一章：无（这是第一章）&nbsp;&nbsp;|&nbsp;&nbsp;下一章：[添加交互](../02-adding-interactivity/README.md)
 
 ---
 

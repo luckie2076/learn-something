@@ -1,5 +1,7 @@
 # 单元 02 · 导航组件
 
+上一单元：[路由基础](../unit-01-project-init/README.md) | 下一单元：[动态路由](../unit-03-dynamic-params/README.md)
+
 ## 运行
 
 ```bash

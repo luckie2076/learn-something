@@ -1,89 +1,117 @@
-# Unit 08 · Dialog 组件
+# Unit 08 · Dialog 对话框
 
 ## 核心 CSS 知识点
 
-### 1. fixed 全屏定位
+### 1. 全屏遮罩 + 居中内容 — fixed + flex
 
-```css
-fixed inset-0
+```jsx
+{/* 遮罩层 — 覆盖整个视口 */}
+<div className="fixed inset-0 z-50 bg-black/50">
+  {/* 内容区 — 遮罩内部居中 */}
+  <div className="fixed inset-0 flex items-center justify-center">
+    <div className="bg-white rounded-lg shadow-xl p-6">
+      对话框内容
+    </div>
+  </div>
+</div>
 ```
 
-等价于：
+- `fixed inset-0`：铺满整个视口（等价于 `top:0; right:0; bottom:0; left:0`）
+- `flex items-center justify-center`：水平和垂直居中子元素
+- `bg-black/50`：半透明黑色遮罩（`rgba(0,0,0,0.5)`）
 
-```css
-position: fixed;
-top: 0;
-right: 0;
-bottom: 0;
-left: 0;
-```
+### 2. 双阶段动画 — open + visible
 
-`fixed` 相对于视口定位，不随页面滚动移动——这是遮罩层的核心。
+Dialog 的入场动画需要"先挂载 DOM，再触发 CSS transition"。用两个布尔状态控制：
 
-### 2. 遮罩层（Overlay）
+```jsx
+const [mounted, setMounted] = useState(false)    // 控制 DOM 挂载
+const [visible, setVisible] = useState(false)    // 控制 CSS 动画类名
 
-```css
-fixed inset-0 bg-black/50 z-50
-```
-
-- `bg-black/50` — 纯黑 + 50% 不透明度 = 半透明遮罩
-- `z-50` — 确保遮罩在所有内容上方
-- 点击遮罩层关闭 Dialog（通过 `onClick={() => setOpen(false)}`）
-
-### 3. body scroll lock
-
-```js
-document.body.style.overflow = "hidden"  // 打开时
-document.body.style.overflow = original  // 关闭时恢复
-```
-
-这是 Dialog 最关键的体验细节：打开弹窗后，背景页面应禁止滚动。
-
-### 4. 出入动画
-
-```css
-/* 入场 */
-opacity: 1; transform: scale(1);
-
-/* 离场 */
-opacity: 0; transform: scale(0.95);
-
-/* 过渡 */
-transition: all 0.2s;
-```
-
-`requestAnimationFrame` 技巧：
-
-```js
-// 先挂载 DOM（此时是离场状态）
-// 下一帧再切换到入场状态，触发 CSS transition
+// 打开时：立即挂载 → 下一帧触发动画
 useEffect(() => {
   if (open) {
+    setMounted(true)
     requestAnimationFrame(() => setVisible(true))
+  } else {
+    setVisible(false)
+    setTimeout(() => setMounted(false), 300)  // 等动画播完再卸载
   }
 }, [open])
 ```
 
-这样浏览器能检测到属性变化并执行过渡动画。
-
-### 5. z-index 双层结构
-
+**时序图**：
 ```
-z-50 遮罩层 (bg-black/50)
-z-50 内容层 (bg-white 白色弹窗)
-```
+打开：  mounted=true  →  DOM挂载（opacity:0, scale:0.95）
+        →  rAF后 visible=true  →  CSS类名切换（transition生效 → opacity:1, scale:1）
 
-两层用相同的 z-index 但内容层在 DOM 中排在后面（后来居上）。
-
-### 6. ESC 键关闭
-
-```js
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") setOpen(false)
-})
+关闭：  visible=false →  CSS类名切换（transition生效 → opacity:0, scale:0.95）
+        →  300ms后 mounted=false →  DOM卸载
 ```
 
-符合 WAI-ARIA 无障碍标准。
+`requestAnimationFrame` 确保浏览器在**下一帧**才触发 CSS 类名变化。如果和 `setMounted(true)` 在同一个同步任务中执行，浏览器会批量处理两个状态变更，CSS transition 不会生效。
+
+### 3. 遮罩 + 内容各自独立的动画
+
+```css
+/* 遮罩：只做透明度过渡 */
+.overlay { transition: opacity 300ms; }
+
+/* 内容：opacity + scale 同时过渡（Material Design 风格） */
+.content { transition: opacity 300ms, transform 300ms; }
+.content.hidden { opacity: 0; transform: scale(0.95); }
+```
+
+遮罩和内容的动画属性不同，独立控制更细腻。
+
+### 4. body scroll lock — 阻止背景滚动
+
+```jsx
+useEffect(() => {
+  if (open) {
+    const original = document.body.style.overflow
+    document.body.style.overflow = "hidden"   // 锁定滚动
+    return () => {
+      document.body.style.overflow = original  // 恢复
+    }
+  }
+}, [open])
+```
+
+设置 `body { overflow: hidden }` 后，背景页面无法滚动，用户的滚动操作只影响 Dialog 内部（如果内部也溢出的话）。
+
+### 5. z-index 双层级
+
+```
+z-50  — Dialog 整体（遮罩 + 内容）
+  ├── 遮罩 (z-index 继承 50)
+  └── 内容 (z-index 继承 50)
+
+页面其他元素  — z-0 ~ z-40
+```
+
+整个 Dialog 使用一个 `z-50` 包裹遮罩和内容，因为它们都在同一个层叠上下文中，内部不需要再次设置 z-index。
+
+### 6. ESC 关闭 + 聚焦管理
+
+```jsx
+// ESC 键关闭
+useEffect(() => {
+  const handler = (e) => e.key === "Escape" && onClose()
+  document.addEventListener("keydown", handler)
+  return () => document.removeEventListener("keydown", handler)
+}, [open])
+
+// 打开时聚焦 Dialog，支持键盘导航
+useEffect(() => {
+  dialogRef.current?.focus()
+}, [open])
+
+// JSX 中
+<div ref={dialogRef} tabIndex={-1} role="dialog" aria-modal="true">
+```
+
+`tabIndex={-1}` 让不可聚焦的 `<div>` 能够接收 `focus()`，使键盘事件可以正确捕获。
 
 ---
 

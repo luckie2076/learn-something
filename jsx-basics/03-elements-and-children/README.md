@@ -1,7 +1,9 @@
 # 第三章 · 元素与子元素
 
 > 教学导向：每节先讲「为什么这样设计」，再展示最小可运行代码。
-> 运行方式：在项目根目录执行 `pnpm install`，然后 `cd 03-elements-and-children && pnpm dev`。
+> 运行方式：`cd 03-elements-and-children && pnpm install && pnpm dev`。
+>
+> 上一章：[表达式与属性](../02-expressions/README.md) | 下一章：[条件与循环渲染](../04-condition-and-loop/README.md)
 
 ---
 

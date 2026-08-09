@@ -1,6 +1,9 @@
 # 第三章 · 管理状态（Managing State）
 
+> 对应官方文档：[Managing State](https://react.dev/learn/managing-state)
 > 运行：`pnpm install && pnpm dev`。代码在 `src/App.jsx` 按小节聚合，每节一个文件。
+>
+> 上一章：[添加交互](../02-adding-interactivity/README.md)&nbsp;&nbsp;|&nbsp;&nbsp;下一章：[脱围机制](../04-escape-hatches/README.md)
 
 ---
 

@@ -1,5 +1,7 @@
 # 单元 13 · 设计令牌原理（Design Tokens）
 
+[上一单元：Table / Avatar / Badge](../unit-12-table-avatar/README.md) | [下一单元：暗色模式](../unit-14-dark-mode/README.md)
+
 > 本单元回答一个问题：**shadcn/ui 的组件为什么不需要写死颜色，改一处就能全站换肤？**
 > 答案就是「设计令牌（design tokens）」——用 CSS 变量把颜色、圆角等设计决策集中管理。
 

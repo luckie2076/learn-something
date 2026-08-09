@@ -20,4 +20,4 @@
 > 学习时建议**逐个击破**（进对应子目录 `pnpm install && pnpm <script>`），理解后再回看它们怎么组合。
 
 ## 下一步
-完成后进入 [阶段四：构建与打包](../stage-04-build/README.md)。
+完成后进入 [阶段三：CSS 工程化与样式方案](../stage-03-styling/README.md)。

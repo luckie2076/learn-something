@@ -1,7 +1,9 @@
 # 第一章 · JSX 基本语法
 
 > 教学导向：每节先讲「为什么这样设计」，再展示最小可运行代码。
-> 运行方式：在项目根目录执行 `pnpm install`，然后 `cd 01-jsx-syntax && pnpm dev`。
+> 运行方式：`cd 01-jsx-syntax && pnpm install && pnpm dev`。
+>
+> 下一章：[表达式与属性](../02-expressions/README.md)
 
 ---
 

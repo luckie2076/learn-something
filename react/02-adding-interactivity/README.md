@@ -1,6 +1,9 @@
 # 第二章 · 添加交互（Adding Interactivity）
 
+> 对应官方文档：[Adding Interactivity](https://react.dev/learn/adding-interactivity)
 > 运行：`pnpm install && pnpm dev`。代码在 `src/App.jsx` 按小节聚合，每节一个文件。
+>
+> 上一章：[描述 UI](../01-describing-the-ui/README.md)&nbsp;&nbsp;|&nbsp;&nbsp;下一章：[管理状态](../03-managing-state/README.md)
 
 ---
 

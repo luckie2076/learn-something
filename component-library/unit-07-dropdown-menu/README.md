@@ -1,76 +1,89 @@
-# Unit 07 · Dropdown Menu 组件
+# Unit 07 · DropdownMenu 下拉菜单
 
 ## 核心 CSS 知识点
 
-### 1. 绝对定位（Fixed Positioning）
+### 1. 动态定位 — getBoundingClientRect() + fixed
 
-菜单面板使用 `position: fixed` + `getBoundingClientRect()` 动态计算位置：
+Dropdown 的菜单位置不是固定的，它需要"弹出"在触发按钮的正下方。核心步骤：
 
-```js
-const rect = triggerRef.current.getBoundingClientRect()
-// rect.top / rect.left — 触发按钮相对于视口的坐标
-// rect.bottom / rect.right — 触发按钮的底边/右边
+```jsx
+// 1. 获取按钮在视口中的位置
+const btnRect = btnRef.current.getBoundingClientRect()
 
-// 菜单放在按钮下方 4px 处
-position = {
-  top: rect.bottom + 4,
-  left: rect.left,
-}
+// 2. 计算菜单的坐标
+const x = btnRect.left          // 左对齐
+const y = btnRect.bottom + 4    // 按钮下方 4px
+
+// 3. 用 fixed 定位到视口
+menu.style.left = `${x}px`
+menu.style.top = `${y}px`
 ```
 
-为什么用 `fixed` 而不是 `absolute`？
-- `absolute` 相对于最近的 `position: relative` 祖先定位
-- `fixed` 相对于视口定位，不受任何祖先影响（配合 Portal 使用更可靠）
+`getBoundingClientRect()` 返回元素相对于**视口**（viewport）的位置，配合 `position: fixed` 实现精确对齐。
 
-### 2. z-index 层叠上下文
+### 2. z-index 层叠上下文 — 菜单浮在最上层
 
 ```css
-z-index: 50
+z-50 /* z-index: 50 */
 ```
 
-菜单需要在页面所有内容上方显示。TailwindCSS 的 `z-50` 对应 `z-index: 50`，足以覆盖绝大多数场景。
+`z-index` 控制元素的层叠顺序。Dropdown 菜单必须高于页面其他元素，避免被后续内容遮挡。
 
-### 3. createPortal
+### 3. React Portal — 突破父容器限制
 
-```js
+```jsx
 import { createPortal } from "react-dom"
 
-return createPortal(
-  <div>菜单内容</div>,
-  document.body  // 渲染目标：body 末尾
-)
+return createPortal(<menu />, document.body)
 ```
 
-解决的问题：
-- 父容器 `overflow: hidden` 会裁剪超出范围的子元素
-- 父容器 `z-index` 会创建新的层叠上下文，限制子元素层级
-- 将菜单渲染到 `document.body` 可以完全避开这些限制
+如果菜单渲染在触发按钮的 DOM 子树中，可能被父元素的 `overflow: hidden` / `z-index` 限制。Portal 将菜单挂载到 `<body>` 末尾，完全脱离父容器约束。
 
-### 4. click outside 检测
+### 4. useLayoutEffect — 在浏览器绘制前计算位置
 
-```js
+```jsx
+useLayoutEffect(() => {
+  // 在 DOM 变更后、浏览器绘制前同步执行
+  const rect = btnRef.current.getBoundingClientRect()
+  setPosition({ x: rect.left, y: rect.bottom + 4 })
+}, [open])
+```
+
+| Hook | 执行时机 | 适用场景 |
+|------|---------|---------|
+| `useEffect` | 浏览器**绘制之后**异步执行 | 数据请求、事件监听 |
+| `useLayoutEffect` | DOM 变更后、浏览器**绘制之前**同步执行 | 位置计算，避免闪烁 |
+
+如果位置计算放在 `useEffect` 中，用户会先看到菜单在错误位置闪现一帧再跳到正确位置。`useLayoutEffect` 在绘制前完成计算，消除闪烁。
+
+### 5. 点击外部关闭 — 事件委托模式
+
+```jsx
 useEffect(() => {
   const handler = (e) => {
-    if (triggerRef.current?.contains(e.target)) return  // 点击触发按钮
-    if (contentRef.current?.contains(e.target)) return   // 点击菜单内部
-    setOpen(false)  // 都不是 → 关闭菜单
+    // 如果点击目标不在菜单或按钮内，关闭菜单
+    if (!menuRef.current?.contains(e.target)) {
+      onClose()
+    }
   }
   document.addEventListener("mousedown", handler)
   return () => document.removeEventListener("mousedown", handler)
 }, [open])
 ```
 
-为什么用 `mousedown` 而不是 `click`？
-- `mousedown` 先于 `click` 触发，可以更早地关闭菜单
+- `contains()`：检查一个节点是否是另一个节点的后代
+- 使用 `mousedown` 而非 `click`：mousedown 先触发，可阻止 click 事件的后续副作用
+- 监听器绑定在 `document` 而非菜单元素上：捕获全局的点击事件
 
-### 5. 翻转逻辑
+### 6. align="end" — 右对齐适配
 
-```js
-if (rect.bottom + menuHeight > window.innerHeight) {
-  // 下方空间不够，翻转到上方
-  top = rect.top - menuHeight - 4
+```jsx
+if (align === "end") {
+  x = btnRect.right - menuWidth  // 菜单右边缘对齐按钮右边缘
 }
 ```
+
+当按钮靠近屏幕右侧，左对齐会导致菜单溢出视口，右对齐可以将菜单向左偏移。
 
 ---
 
