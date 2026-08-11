@@ -9,3 +9,10 @@ coverage/
 .DS_Store
 *.log
 .codebuddy/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
