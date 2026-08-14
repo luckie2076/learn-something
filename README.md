@@ -19,5 +19,6 @@
 | [shadcnui](./shadcnui/) | shadcn/ui | 15 单元，分三大模块：环境搭建→核心组件→主题与设计系统 |
 | [component-library](./component-library/) | 组件库（从零手写 CSS） | 11 单元：Button→Input→Badge→Card→Tabs→Accordion→Dropdown→Dialog→Sheet→Sidebar→SplitPane |
 | [rust](./rust/) | Rust（最新稳定版 / 2024 edition） | 8 单元渐进路线：环境搭建→基础语法→所有权与借用→结构体/枚举/模式匹配→错误处理→集合与迭代器→泛型/trait/包管理→异步编程 |
+| [tauri](./tauri/) | Tauri 2 桌面应用（React 19 + Rust） | 8 单元渐进路线：环境搭建→项目结构→命令系统→事件系统→权限能力→插件与文件系统→窗口管理→打包发布 |
 
 各项目的详细运行说明见各自目录下的 README。
