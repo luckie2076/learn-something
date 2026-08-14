@@ -18,5 +18,6 @@
 | [zustand](./zustand/) | Zustand 5 | 7 单元：创建 Store→选择器→状态更新→异步操作→Slice 模式→中间件→进阶技巧 |
 | [shadcnui](./shadcnui/) | shadcn/ui | 15 单元，分三大模块：环境搭建→核心组件→主题与设计系统 |
 | [component-library](./component-library/) | 组件库（从零手写 CSS） | 11 单元：Button→Input→Badge→Card→Tabs→Accordion→Dropdown→Dialog→Sheet→Sidebar→SplitPane |
+| [rust](./rust/) | Rust（最新稳定版 / 2024 edition） | 8 单元渐进路线：环境搭建→基础语法→所有权与借用→结构体/枚举/模式匹配→错误处理→集合与迭代器→泛型/trait/包管理→异步编程 |
 
 各项目的详细运行说明见各自目录下的 README。
