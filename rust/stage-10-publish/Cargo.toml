@@ -1,0 +1,29 @@
+# ===== 发布元数据：Cargo.toml 里"给别人用"的信息 =====
+# name/version/description/license 是发布到 crates.io 的必需字段。
+[package]
+name = "strtools"
+version = "0.1.0"
+edition = "2024"
+description = "极简文本工具：同一个 crate 同时作为库与 CLI 的发布演示"
+license = "MIT OR Apache-2.0"
+readme = "README.md"
+keywords = ["text", "cli", "demo"]
+categories = ["command-line-utilities"]
+
+# ===== include：显式控制"打包发布时包含哪些文件" =====
+# 指定后 Cargo 不再受 .gitignore / git 跟踪状态影响，只打包列表里的文件。
+include = ["src/**", "examples/**", "README.md", "Cargo.toml", "Cargo.lock"]
+
+# ===== 一个 package，两种身份 =====
+# [lib]  → 库：第三方程序 `use strtools::...`
+# [[bin]] → 可执行文件：终端直接运行 `strtools ...`
+# 显式声明 path 只是为了教学清楚，其实按约定目录布局可省略。
+[lib]
+name = "strtools"
+path = "src/lib.rs"
+
+[[bin]]
+name = "strtools"
+path = "src/main.rs"
+
+[dependencies]
