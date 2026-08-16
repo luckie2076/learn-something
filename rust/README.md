@@ -22,6 +22,8 @@ Rust 的语言世界是 **C 与高级语言各取一半**，因此本课程按�
 | Cargo 包管理、模块化 | **Python/JS**（pip/npm、import） | C 无现代包管理器与模块体系 |
 | 集合、迭代器、闭包 | **Python/JS** | 函数式特性（惰性求值、闭包捕获）C 没有直接对应 |
 | 异步 async/await | **Python/JS**（辅以 C 的 pthread） | 语法模型与 Python asyncio / JS Promise 一致 |
+| 测试（单元/集成/文档） | **Python/JS**（pytest/jest） | C 只能手写 `assert`，无框架；Rust 测试是内置特性，对照 pytest/jest 的用法 |
+| 打包发布（库 + CLI、crates.io） | **Python/JS**（pip/npm、PyPI、twine） | C 无标准包管理，只能手动分发源码/库文件；Rust 的 `cargo publish` 对照 pip/npm 发布 |
 
 ## 路线图
 
@@ -36,12 +38,14 @@ Rust 的语言世界是 **C 与高级语言各取一半**，因此本课程按�
 | 6 | `stage-6-generics-traits` | 泛型、trait（附 lib+bin 与引入依赖速览） | trait 对照 C 手写 vtable；Cargo 对照 pip/npm |
 | 7 | `stage-7-async` | async/await、tokio 运行时、并发 | 对照 Python asyncio；C 中只能 pthread/回调 |
 | 8 | `stage-8-modules-packages` | 模块系统（mod/pub/use/路径/文件组织）、crate 与 package、Cargo 依赖管理 | 对照 Python/JS 的 import 与 pip/npm；C 的 .c+头文件+链接 |
+| 9 | `stage-9-testing` | 单元测试（`#[cfg(test)]`）、集成测试（`tests/`）、文档测试、`cargo test` 常用命令 | 对照 pytest/jest；C 只能手写 assert（无框架） |
+| 10 | `stage-10-publish` | 打包发布：lib + bin 双身份（库 + CLI）、发布元数据、`cargo package`/`cargo publish`/`cargo install`、examples/ | 对照 pip/npm 与 PyPI；C 无标准包管理 |
 
 每个 stage 都是**独立的 Cargo 项目**（各自 `Cargo.toml` + `target/`），可单独 `cargo run`，互不影响。
 
 ## 学习建议
 
-- 按顺序从 stage-0 推进到 stage-8，每个 stage 先读 README 再跑代码。
+- 按顺序从 stage-0 推进到 stage-10，每个 stage 先读 README 再跑代码。
 - 运行：`cd <目录> && cargo run`（首次会编译依赖，之后秒开）。
 - 所有权（stage-2）是全书最关键的一章，建议对照 C 的指针/堆栈模型反复消化，再进入后续章节。
 - 模块与包（stage-8）是工程化基础：stage-6 末尾已给速览，完整展开在 stage-8，二者衔接学习效果最佳；按目录顺序放到 stage-7 之后也无妨。
